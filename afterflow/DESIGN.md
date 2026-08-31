@@ -297,7 +297,7 @@ Capabilities live in attached three-column framed cells with line glyphs and a s
 
 ### Experience Evidence
 
-Five contributor-experience marks sit in a structural rail labelled “Prior experience across Afterflow's team and advisors.” They represent prior experience, never customers, clients, partners, or endorsements. Each approved lockup remains intact and receives the same one-shot surface reveal as its cell; trademark artwork is never split into characters or given a competing animation. Product surfaces and generated operational imagery retain their provenance in source metadata while illustrative values receive one clear contextual label.
+Five contributor-experience marks sit in a structural rail labelled “Experience behind Afterflow.” They represent prior experience, never customers, clients, partners, or endorsements. Each approved lockup remains intact and receives the same one-shot surface reveal as its cell; trademark artwork is never split into characters or given a competing animation. Product surfaces and generated operational imagery retain their provenance in source metadata while illustrative values receive one clear contextual label.
 
 ### Text Motion and Counters
 

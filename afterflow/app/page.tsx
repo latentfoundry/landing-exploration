@@ -176,7 +176,7 @@ export default function Home() {
         <section className="logo-field" id="proof" aria-labelledby="logo-field-label">
           <div className="shell logo-field__heading">
             <p id="logo-field-label">
-              <FocusWords>Prior experience across Afterflow&apos;s team and advisors</FocusWords>
+              <FocusWords>Experience behind Afterflow</FocusWords>
             </p>
           </div>
           <div className="logo-marquee">
