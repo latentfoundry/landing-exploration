@@ -220,7 +220,7 @@ Illustrations use the same roles as the page: labels are at least 12px, readable
 
 ## Layout
 
-The shared shell is capped at 1128px. Its side gutters are 24px on wide screens, 18px at 900px and below, and 16px at 640px and below. The transparent 64px header is positioned over the opening image plane and scrolls away with the hero; below 900px it becomes a 68px compact navigation with an opaque menu panel only when opened.
+The shared shell is capped at 1128px. Its side gutters are 24px on wide screens, 18px at 900px and below, and 16px at 640px and below. The transparent 64px header is positioned over the opening image plane and scrolls away with the hero; below 900px it becomes a 68px compact navigation whose open state expands into one full-viewport decision field behind the unchanged brand and close control.
 
 Marketing sections use long vertical intervals: the primary mechanism and feature fields run from 180px top padding to 210px bottom padding, while the comparison field uses 170px/190px and the insights field uses 155px/175px. Below 900px, primary sections contract to roughly 130px/145–150px; below 640px, they settle near 108px/118–122px. Most section headings use a wide statement/support split, then collapse to one column before content grids reflow. The How it works introduction keeps its explanation directly beneath the heading as one reading unit before the transformation story begins.
 
@@ -267,7 +267,7 @@ The default structural silhouette is square and severe (0px): frames, feature ce
 
 ### Navigation
 
-The navigation is a transparent, borderless 64px overlay that belongs to the opening image and leaves the viewport after the hero on wide screens. The supplied mark renders white without a tile so it belongs to the image plane; 16px links use compact spacing and reveal a one-pixel cyan underline on hover or focus. Below 900px, the compact header stays available on the long page and gains a near-black blurred field after scrolling; a 44px circular menu trigger opens one square, opaque link panel.
+The navigation is a transparent, borderless 64px overlay that belongs to the opening image and leaves the viewport after the hero on wide screens. The supplied mark renders white without a tile so it belongs to the image plane; 16px links use compact spacing and reveal a one-pixel cyan underline on hover or focus. Below 900px, the compact header stays available on the long page and gains a near-black blurred field after scrolling only while the menu is closed. Its 44px circular trigger opens a square-edged, full-viewport decision field that continues behind the header, pairs a darkened incumbent world image with grain, and presents four large hairline-separated links plus the signal action. The field resolves in one top-down structural sweep, followed by a restrained blur-and-rise link sequence; closing reverses more quickly, and reduced-motion users receive the complete open or closed state immediately.
 
 ### Transformation Scroll Story
 

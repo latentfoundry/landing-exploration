@@ -4,10 +4,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+const navigationItems = [
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#why-afterflow", label: "Why Afterflow" },
+  { href: "/#features", label: "Features" },
+  { href: "/insights", label: "Insights" },
+] as const;
+
+function ArrowUpRight() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M5 15 15 5M7 5h8v8" />
+    </svg>
+  );
+}
+
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -30,33 +45,72 @@ export function SiteHeader() {
   useEffect(() => {
     if (!mobileOpen) return;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      event.preventDefault();
-      setMobileOpen(false);
-      window.requestAnimationFrame(() => triggerRef.current?.focus());
-    };
+    const panel = mobilePanelRef.current;
+    const backgroundElements = Array.from(
+      document.querySelectorAll<HTMLElement>("main, .site-footer, .skip-link, .brand-lockup"),
+    );
+    const previousInertStates = backgroundElements.map((element) => element.inert);
 
-    const handlePointerDown = (event: PointerEvent) => {
-      const target = event.target;
-      if (target instanceof Node && !mobileNavRef.current?.contains(target)) setMobileOpen(false);
+    document.documentElement.classList.add("has-mobile-navigation-open");
+    backgroundElements.forEach((element) => {
+      element.inert = true;
+    });
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      panel?.querySelector<HTMLElement>("a[href]")?.focus({ preventScroll: true });
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        triggerRef.current?.focus({ preventScroll: true });
+        setMobileOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = [
+        triggerRef.current,
+        ...Array.from(panel?.querySelectorAll<HTMLElement>("a[href]") ?? []),
+      ].filter((element): element is HTMLElement => element !== null);
+
+      if (!focusableElements.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("pointerdown", handlePointerDown);
 
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("pointerdown", handlePointerDown);
+      document.documentElement.classList.remove("has-mobile-navigation-open");
+      backgroundElements.forEach((element, index) => {
+        element.inert = previousInertStates[index];
+      });
     };
   }, [mobileOpen]);
 
   const closeMobileNavigation = () => {
+    triggerRef.current?.focus({ preventScroll: true });
     setMobileOpen(false);
   };
 
   return (
-    <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
+    <header
+      className={`site-header${scrolled ? " is-scrolled" : ""}${mobileOpen ? " is-menu-open" : ""}`}
+    >
       <div className="shell site-header__inner">
         <Link className="brand-lockup" href="/#top" aria-label="Afterflow home">
           <span className="brand-mark">
@@ -66,10 +120,11 @@ export function SiteHeader() {
         </Link>
 
         <nav className="site-nav" aria-label="Primary navigation">
-          <Link href="/#how-it-works">How it works</Link>
-          <Link href="/#why-afterflow">Why Afterflow</Link>
-          <Link href="/#features">Features</Link>
-          <Link href="/insights">Insights</Link>
+          {navigationItems.map((item) => (
+            <Link href={item.href} key={item.href}>
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <a
@@ -79,42 +134,65 @@ export function SiteHeader() {
           rel="noreferrer"
         >
           Book a simulation
-          <svg viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M5 15 15 5M7 5h8v8" />
-          </svg>
+          <ArrowUpRight />
         </a>
 
-        <div className={mobileOpen ? "mobile-nav is-open" : "mobile-nav"} ref={mobileNavRef}>
+        <div className={mobileOpen ? "mobile-nav is-open" : "mobile-nav"}>
           <button
             className="mobile-nav__trigger"
             type="button"
             aria-controls="mobile-navigation"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => setMobileOpen((open) => !open)}
+            onClick={() => (mobileOpen ? closeMobileNavigation() : setMobileOpen(true))}
             ref={triggerRef}
           >
             <span />
             <span />
           </button>
-          {mobileOpen ? (
-            <nav id="mobile-navigation" aria-label="Mobile navigation">
-              <Link href="/#how-it-works" onClick={closeMobileNavigation}>
-                How it works
+        </div>
+      </div>
+
+      <div
+        id="mobile-navigation"
+        className={mobileOpen ? "mobile-nav__panel is-open" : "mobile-nav__panel"}
+        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
+        data-lenis-prevent=""
+        ref={mobilePanelRef}
+      >
+        <div className="mobile-nav__world" aria-hidden="true">
+          <Image
+            src="/afterflow-decision-ridge.png"
+            alt=""
+            fill
+            quality={70}
+            sizes="(max-width: 900px) 100vw, 1px"
+          />
+        </div>
+        <div className="mobile-nav__shade" aria-hidden="true" />
+        <div className="mobile-nav__sweep" aria-hidden="true" />
+
+        <div className="mobile-nav__content">
+          <nav className="mobile-nav__links" aria-label="Primary navigation">
+            {navigationItems.map((item) => (
+              <Link href={item.href} onClick={closeMobileNavigation} key={item.href}>
+                <span>{item.label}</span>
+                <ArrowUpRight />
               </Link>
-              <Link href="/#why-afterflow" onClick={closeMobileNavigation}>Why Afterflow</Link>
-              <Link href="/#features" onClick={closeMobileNavigation}>Features</Link>
-              <Link href="/insights" onClick={closeMobileNavigation}>Insights</Link>
-              <a
-                href="https://calendly.com/mika-afterflow/afterflow-intro"
-                target="_blank"
-                rel="noreferrer"
-                onClick={closeMobileNavigation}
-              >
-                Book a simulation
-              </a>
-            </nav>
-          ) : null}
+            ))}
+          </nav>
+
+          <a
+            className="mobile-nav__cta"
+            href="https://calendly.com/mika-afterflow/afterflow-intro"
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMobileNavigation}
+          >
+            Book a simulation
+            <ArrowUpRight />
+          </a>
         </div>
       </div>
     </header>
