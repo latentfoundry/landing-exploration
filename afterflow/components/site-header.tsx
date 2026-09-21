@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const MOBILE_NAV_CLOSE_DURATION = 580;
 
 const navigationItems = [
   { href: "/#how-it-works", label: "How it works" },
@@ -21,9 +23,44 @@ function ArrowUpRight() {
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileClosing, setMobileClosing] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeTimerRef = useRef<number | null>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const mobileVisible = mobileOpen || mobileClosing;
+
+  const closeMobileNavigation = useCallback(() => {
+    triggerRef.current?.focus({ preventScroll: true });
+
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+
+    setMobileOpen(false);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setMobileClosing(false);
+      return;
+    }
+
+    setMobileClosing(true);
+    closeTimerRef.current = window.setTimeout(() => {
+      setMobileClosing(false);
+      closeTimerRef.current = null;
+    }, MOBILE_NAV_CLOSE_DURATION);
+  }, []);
+
+  const openMobileNavigation = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+
+    setMobileClosing(false);
+    setMobileOpen(true);
+  };
 
   useEffect(() => {
     const updateScrolledState = () => setScrolled(window.scrollY > 24);
@@ -35,7 +72,15 @@ export function SiteHeader() {
   useEffect(() => {
     const media = window.matchMedia("(max-width: 900px)");
     const handleBreakpoint = () => {
-      if (!media.matches) setMobileOpen(false);
+      if (media.matches) return;
+
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+
+      setMobileOpen(false);
+      setMobileClosing(false);
     };
 
     media.addEventListener("change", handleBreakpoint);
@@ -43,9 +88,8 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    if (!mobileOpen) return;
+    if (!mobileVisible) return;
 
-    const panel = mobilePanelRef.current;
     const backgroundElements = Array.from(
       document.querySelectorAll<HTMLElement>("main, .site-footer, .skip-link, .brand-lockup"),
     );
@@ -56,6 +100,19 @@ export function SiteHeader() {
       element.inert = true;
     });
 
+    return () => {
+      document.documentElement.classList.remove("has-mobile-navigation-open");
+      backgroundElements.forEach((element, index) => {
+        element.inert = previousInertStates[index];
+      });
+    };
+  }, [mobileVisible]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const panel = mobilePanelRef.current;
+
     const focusFrame = window.requestAnimationFrame(() => {
       panel?.querySelector<HTMLElement>("a[href]")?.focus({ preventScroll: true });
     });
@@ -63,8 +120,7 @@ export function SiteHeader() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        triggerRef.current?.focus({ preventScroll: true });
-        setMobileOpen(false);
+        closeMobileNavigation();
         return;
       }
 
@@ -95,21 +151,19 @@ export function SiteHeader() {
     return () => {
       window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", handleKeyDown);
-      document.documentElement.classList.remove("has-mobile-navigation-open");
-      backgroundElements.forEach((element, index) => {
-        element.inert = previousInertStates[index];
-      });
     };
-  }, [mobileOpen]);
+  }, [closeMobileNavigation, mobileOpen]);
 
-  const closeMobileNavigation = () => {
-    triggerRef.current?.focus({ preventScroll: true });
-    setMobileOpen(false);
-  };
+  useEffect(
+    () => () => {
+      if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
+    },
+    [],
+  );
 
   return (
     <header
-      className={`site-header${scrolled ? " is-scrolled" : ""}${mobileOpen ? " is-menu-open" : ""}`}
+      className={`site-header${scrolled ? " is-scrolled" : ""}${mobileVisible ? " is-menu-open" : ""}`}
     >
       <div className="shell site-header__inner">
         <Link className="brand-lockup" href="/#top" aria-label="Afterflow home">
@@ -144,7 +198,7 @@ export function SiteHeader() {
             aria-controls="mobile-navigation"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => (mobileOpen ? closeMobileNavigation() : setMobileOpen(true))}
+            onClick={() => (mobileOpen ? closeMobileNavigation() : openMobileNavigation())}
             ref={triggerRef}
           >
             <span />
@@ -155,7 +209,7 @@ export function SiteHeader() {
 
       <div
         id="mobile-navigation"
-        className={mobileOpen ? "mobile-nav__panel is-open" : "mobile-nav__panel"}
+        className={`mobile-nav__panel${mobileOpen ? " is-open" : ""}${mobileClosing ? " is-closing" : ""}`}
         aria-hidden={!mobileOpen}
         inert={!mobileOpen}
         data-lenis-prevent=""
