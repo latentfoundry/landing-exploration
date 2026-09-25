@@ -1,0 +1,78 @@
+.editorial-art-plate { overflow: visible; color: var(--ink); stroke-linecap: round; stroke-linejoin: round; }
+.process-plate { margin: 0; }
+.process-plate-surface { fill: #f6f5f3; }
+.process-illustration text { font: 400 18px var(--font-body); fill: var(--ink); }
+.process-chart-guides { stroke: #e6e2dc; stroke-width: 1; }
+.process-chart-alternative { stroke: #bcb5ac; stroke-width: 1.5; }
+.process-chart-area, .process-results-area { fill: var(--accent); fill-opacity: .055; }
+.process-chart-selected { stroke: var(--accent); stroke-width: 2.6; }
+.process-chart-point { fill: var(--accent); stroke: #f6f5f3; stroke-width: 2; }
+.process-scenario rect { fill: var(--paper); stroke: #e6e2dc; stroke-width: 1; }
+.process-scenario text { font-size: 18px; }
+.process-scenario-chosen rect { stroke: var(--accent); }
+.process-scenario-check { stroke: var(--accent); stroke-width: 1.8; }
+.process-forecast-card rect, .process-results-card rect { fill: var(--paper); }
+.process-illustration .process-metric { font: 400 44px var(--font-display); letter-spacing: -.025em; }
+.process-illustration .process-metric-label { font-size: 18px; fill: var(--body); }
+.process-illustration .process-annotation { font-size: 18px; fill: var(--body); }
+.process-illustration .process-rank { font-family: var(--font-display); font-size: 25px; fill: var(--body); }
+.process-scenario-chosen .process-rank { fill: var(--accent); }
+.process-rank-track { stroke: #e9e5df; stroke-width: 3; }
+.process-rank-bar { stroke: #aaa297; stroke-width: 3; }
+.process-scenario-chosen .process-rank-bar { stroke: var(--accent); }
+.process-build-frame { fill: var(--paper); stroke: #e0dcd6; stroke-width: 1; }
+.process-build-connections { stroke: #b1a89c; stroke-width: 1.5; }
+.process-build-input { fill: var(--paper); stroke: var(--ink); stroke-width: 1.3; }
+.process-build-code { fill: var(--ink); }
+.process-code-glyph, .process-action-glyph { stroke: var(--paper); stroke-width: 1.3; }
+.process-build-action { fill: var(--accent); }
+.process-build-control { fill: var(--paper); stroke: var(--ink); stroke-width: 1.3; }
+.process-build-tested path { stroke: var(--accent); stroke-width: 1.8; }
+.process-deploy-guide { stroke: #d8d1c9; stroke-width: 1.5; }
+.process-deploy-route, .process-deploy-arrow { stroke: var(--accent); stroke-width: 2; }
+.process-illustration .process-deploy-label { font-size: 18px; fill: var(--body); }
+.process-production-frame { fill: var(--ink); }
+.process-production-system { stroke: var(--paper); stroke-width: 1.2; }
+.process-production-system rect, .process-production-system > path:not(.process-production-connections) { fill: var(--ink); }
+.process-production-system .process-production-core { fill: var(--accent); stroke: var(--accent); }
+.process-production-connections { stroke-opacity: .6; }
+.process-production-live circle { fill: #c6a58e; }
+.process-production-live text { fill: var(--paper); }
+.process-results-boundary { stroke: #bcb5ac; stroke-width: 1; stroke-dasharray: 2 5; }
+.process-results-forecast { stroke: #b4ada4; stroke-width: 1.7; stroke-dasharray: 4 5; }
+.process-results-observed { stroke: var(--ink); stroke-width: 2.7; }
+.process-results-now { fill: var(--ink); stroke: #f6f5f3; stroke-width: 2; }
+.process-illustration .process-results-next { fill: var(--accent); font-size: 18px; }
+.process-metric-divider { stroke: var(--line); stroke-width: 1; }
+.process-illustration .process-result-metric { font: 400 34px var(--font-display); fill: var(--body); letter-spacing: -.02em; }
+.process-illustration .process-result-actual { fill: var(--ink); }
+
+/* The complete diagram is the default; each sequence runs once on its own reveal. */
+.process-plate.is-revealed .process-draw { animation: process-line-draw 1.6s .3s cubic-bezier(.16, 1, .3, 1) both; }
+.process-plate.is-revealed .process-scenario { animation: process-node-arrive .8s var(--plate-delay) cubic-bezier(.16, 1, .3, 1) both; }
+.process-plate.is-revealed .process-arrive { animation: process-detail-arrive .7s 1.25s both; }
+.process-plate.is-revealed .process-rank-bar { animation: process-line-draw 1.1s .4s cubic-bezier(.16, 1, .3, 1) both; }
+.process-plate.is-revealed .process-build-components { animation: process-node-arrive 1s .15s cubic-bezier(.16, 1, .3, 1) both; }
+.process-plate.is-revealed .process-build-tested { animation: process-detail-arrive .6s .8s both; }
+.process-plate.is-revealed .process-deploy-route { animation: process-line-draw .8s 1.2s ease-out both; }
+.process-plate.is-revealed .process-production-system { animation: process-detail-arrive .7s 1.65s both; }
+.process-plate.is-revealed .process-production-live { animation: process-detail-arrive .6s 2.1s both; }
+.process-plate.is-revealed .process-results-revised { animation-delay: 1.3s; animation-duration: 1.3s; }
+.process-plate.is-revealed .process-results-area,
+.process-plate.is-revealed .process-results-next { animation: process-detail-arrive .8s 1.5s both; }
+@keyframes process-line-draw { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+@keyframes process-node-arrive { from { transform: translateY(8px); opacity: .15; } to { transform: translateY(0); opacity: 1; } }
+@keyframes process-detail-arrive { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 1100px) {
+  .process-illustration text,
+  .process-illustration .process-scenario text,
+  .process-illustration .process-metric-label,
+  .process-illustration .process-annotation,
+  .process-illustration .process-deploy-label,
+  .process-illustration .process-results-next { font-size: var(--process-label-size, 26px); }
+}
+/* A stacked drawing gets wider on phones; keep labels at an annotation scale. */
+@media (max-width: 700px) {
+  .process-plate { --process-label-size: clamp(18px, calc(42px - 5vw), 26px); }
+}
+@media (prefers-reduced-motion: reduce) { .process-plate.is-revealed * { animation: none !important; } }

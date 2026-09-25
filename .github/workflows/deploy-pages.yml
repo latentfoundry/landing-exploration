@@ -53,6 +53,10 @@ jobs:
         run: pnpm build
         working-directory: afterflow
 
+      - name: Validate exported pages
+        run: pnpm check:export
+        working-directory: afterflow
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -52,6 +52,8 @@ export function FocusRevealController() {
       if (!target || !root.contains(target)) return;
       observer.unobserve(target);
       reveal(target);
+      // Keyboard focus must never land inside text that is still blurred.
+      target.classList.add("reveal-settled");
     };
 
     const observer = new IntersectionObserver(
@@ -101,5 +103,3 @@ export function FocusRevealController() {
 
   return null;
 }
-
-export default FocusRevealController;

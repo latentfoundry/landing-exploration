@@ -4,13 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const MOBILE_NAV_CLOSE_DURATION = 580;
+const MOBILE_NAV_CLOSE_DURATION = 200;
 
 const navigationItems = [
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#why-afterflow", label: "Why Afterflow" },
-  { href: "/#features", label: "Features" },
-  { href: "/insights", label: "Insights" },
+  { href: "/#product", label: "Product" },
+  { href: "/insights/", label: "Research" },
+  { href: "/#company", label: "Company" },
 ] as const;
 
 function ArrowUpRight() {
@@ -166,14 +165,12 @@ export function SiteHeader() {
       className={`site-header${scrolled ? " is-scrolled" : ""}${mobileVisible ? " is-menu-open" : ""}`}
     >
       <div className="shell site-header__inner">
-        <Link className="brand-lockup" href="/#top" aria-label="Afterflow home">
-          <span className="brand-mark">
-            <Image src="/logo.png" alt="" width={24} height={24} priority />
-          </span>
+        <Link className="brand-lockup" data-arrive="brand" href="/#top" aria-label="Afterflow home">
+          <span className="brand-mark"><Image src="/brand-mark.svg" alt="" width={29} height={25} priority /></span>
           <span>Afterflow</span>
         </Link>
 
-        <nav className="site-nav" aria-label="Primary navigation">
+        <nav className="site-nav" data-arrive="navigation" aria-label="Primary navigation">
           {navigationItems.map((item) => (
             <Link href={item.href} key={item.href}>
               {item.label}
@@ -183,11 +180,12 @@ export function SiteHeader() {
 
         <a
           className="header-cta"
+          data-arrive="navigation"
           href="https://calendly.com/mika-afterflow/afterflow-intro"
           target="_blank"
           rel="noreferrer"
         >
-          Book a simulation
+          Book a demo
           <ArrowUpRight />
         </a>
 
@@ -215,18 +213,6 @@ export function SiteHeader() {
         data-lenis-prevent=""
         ref={mobilePanelRef}
       >
-        <div className="mobile-nav__world" aria-hidden="true">
-          <Image
-            src="/afterflow-decision-ridge.png"
-            alt=""
-            fill
-            quality={70}
-            sizes="(max-width: 900px) 100vw, 1px"
-          />
-        </div>
-        <div className="mobile-nav__shade" aria-hidden="true" />
-        <div className="mobile-nav__sweep" aria-hidden="true" />
-
         <div className="mobile-nav__content">
           <nav className="mobile-nav__links" aria-label="Primary navigation">
             {navigationItems.map((item) => (
@@ -244,7 +230,7 @@ export function SiteHeader() {
             rel="noreferrer"
             onClick={closeMobileNavigation}
           >
-            Book a simulation
+            Book a demo
             <ArrowUpRight />
           </a>
         </div>

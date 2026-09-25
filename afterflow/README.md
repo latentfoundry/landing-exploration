@@ -1,8 +1,10 @@
-# Afterflow landing page
+# Afterflow website
 
-A concise, single-page product story for Afterflow: a decision and simulation layer for operational change.
+A statically exported Next.js site for Afterflow's business simulation and AI implementation work. Production: [afterflow.dev](https://afterflow.dev).
 
-## Run locally
+## Development
+
+Use Node.js 24 and pnpm 9.15.4, matching CI.
 
 ```bash
 pnpm install
@@ -11,28 +13,40 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
-Set `NEXT_PUBLIC_SITE_URL` to the public origin in deployment. Canonical URLs, social images, `robots.txt`, and `sitemap.xml` use it. The GitHub Pages workflow sets it to `https://afterflow.dev`; local development falls back to `http://localhost:3000`.
+## Source map
 
-## Where to edit
+| Location | Purpose |
+| --- | --- |
+| `app/page.tsx` | Homepage structure, copy and FAQs |
+| `app/layout.tsx` | Fonts, shared metadata and organisation/site structured data |
+| `app/globals.css` | Typography, layout and responsive styles |
+| `components/` | Navigation, illustrations, carousel, scroll story and shared UI |
+| `content/insights.ts` | Article content and publication metadata |
+| `app/insights/` | Insights index and article routes |
+| `lib/site.ts` | Canonical origin, search metadata and social image descriptor |
+| `app/opengraph-image.png` | Current 1200×630 social preview |
+| `assets/fonts/` | Five fonts used by `next/font/local` |
+| `public/` | Brand mark and favicon assets |
+| `scripts/check-export.mjs` | Static export validation used locally and in CI |
 
-- `app/page.tsx` — landing-page structure and copy
-- `components/cinematic-hero.tsx` — hero reveal and scroll-linked world scene
-- `components/transformation-scroll.tsx` — sticky three-chapter mechanism and disclosed product concepts
-- `components/consulting-comparison.tsx` — animated consulting-versus-Afterflow comparison
-- `content/insights.ts` — article metadata and content
-- `app/globals.css` — visual system and responsive behaviour
-- `PRODUCT.md` — product and audience context
-- `DESIGN.md` — design-system rationale and extension rules
+[PRODUCT.md](PRODUCT.md) records audience, positioning and evidence boundaries. [DESIGN.md](DESIGN.md) describes the current visual and interaction system. [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) records component attribution; [assets/README.md](assets/README.md) covers font handling and the retained licence.
 
-The interface uses an Animated Button adapted from Vengeance UI. The operational concept surfaces, causal diagrams, and progressive focus reveals are purpose-built for Afterflow. Copied component licensing is recorded in `THIRD_PARTY_NOTICES.md`.
-
-## Quality checks
+## Validation and deployment
 
 ```bash
 pnpm lint
 pnpm build
+pnpm check:export
 ```
 
-`pnpm build` creates the static GitHub Pages artifact in `out/`. The deployment workflow is stored at the repository root in `.github/workflows/deploy-pages.yml`; the custom domain is managed in GitHub's Pages settings, not with a `CNAME` file.
+Build output goes to `out/`. Export validation checks route metadata, structured data, canonical URLs, robots/sitemap, local resources, anchors and favicon assets. Generated build output, local review captures and tooling caches are ignored; commit source changes and `pnpm-lock.yaml` when dependencies change.
 
-After deployment, confirm that canonical and Open Graph URLs use the public domain, then submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools. Validate article structured data with Google's Rich Results Test or Schema.org Validator.
+The root [GitHub Pages workflow](../.github/workflows/deploy-pages.yml) runs these checks with a frozen lockfile before uploading `out/`. Site or workflow changes on `main` deploy automatically; `workflow_dispatch` also permits a manual run. The custom domain is configured in Pages settings, without a repository `CNAME` file.
+
+## Canonical URLs and search
+
+`lib/site.ts` resolves the origin from `NEXT_PUBLIC_SITE_URL`, then `VERCEL_PROJECT_PRODUCTION_URL`, then `https://afterflow.dev`. Preview-host `VERCEL_URL` is deliberately ignored. Overrides must be HTTP(S) origins without a path, query or credentials. CI explicitly sets the production domain.
+
+Canonical links and sitemap entries use trailing slashes. Structured data describes the organisation, website, homepage service, Insights collection and articles. Article publication dates come from content rather than build time. Keep metadata consistent with visible copy and preserve server-rendered reading content.
+
+After deployment, check public canonical and social URLs, then submit `https://afterflow.dev/sitemap.xml` through the verified Google Search Console and Bing Webmaster Tools properties. Validate structured data with Google's Rich Results Test or Schema.org Validator.

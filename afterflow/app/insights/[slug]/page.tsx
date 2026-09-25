@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: InsightPageProps): Promise<Me
 
   if (!insight) return {};
 
-  const articlePath = `/insights/${insight.slug}`;
+  const articlePath = `/insights/${insight.slug}/`;
   const socialTitle = `${insight.title} — Afterflow`;
 
   return {
@@ -39,25 +39,13 @@ export async function generateMetadata({ params }: InsightPageProps): Promise<Me
       url: articlePath,
       publishedTime: insight.publishedIso,
       authors: [insight.author],
-      images: [
-        {
-          url: "/opengraph-image.png",
-          width: 1200,
-          height: 630,
-          alt: "Afterflow — Your sandbox for operational decisions.",
-        },
-      ],
+      images: [siteConfig.socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description: insight.excerpt,
-      images: [
-        {
-          url: "/opengraph-image.png",
-          alt: "Afterflow — Your sandbox for operational decisions.",
-        },
-      ],
+      images: [siteConfig.socialImage],
     },
   };
 }
@@ -68,17 +56,17 @@ export default async function InsightPage({ params }: InsightPageProps) {
 
   if (!insight) notFound();
 
-  const articleUrl = absoluteUrl(`/insights/${insight.slug}`);
+  const articleUrl = absoluteUrl(`/insights/${insight.slug}/`);
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${articleUrl}#article`,
+    url: articleUrl,
     headline: insight.title,
     description: insight.excerpt,
     datePublished: insight.publishedIso,
     inLanguage: "en",
-    image: absoluteUrl("/opengraph-image.png"),
-    mainEntityOfPage: articleUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     author: {
       "@type": "Person",
       name: insight.author,
@@ -104,7 +92,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
         />
         <article className="article shell">
-          <Link className="article-back" href="/insights">
+          <Link className="article-back" href="/insights/">
             Back to insights
           </Link>
           <header>
@@ -156,7 +144,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
               target="_blank"
               rel="noreferrer"
             >
-              Book a simulation
+              Book a demo
             </a>
           </footer>
         </article>

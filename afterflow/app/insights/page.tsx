@@ -1,47 +1,57 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
+import { ResearchEvidence } from "@/components/research-evidence";
 import { insights } from "@/content/insights";
-import { siteConfig } from "@/lib/site";
+import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 
 const description =
   "Evidence-led notes on simulation, rollout design and how AI changes teams, workflows and customer outcomes.";
 
 export const metadata: Metadata = {
-  title: "Insights",
+  title: "Insights on operational AI",
   description,
   alternates: {
-    canonical: "/insights",
+    canonical: "/insights/",
   },
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
     title: "Insights on operational AI — Afterflow",
     description,
-    url: "/insights",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Afterflow — Your sandbox for operational decisions.",
-      },
-    ],
+    url: "/insights/",
+    images: [siteConfig.socialImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Insights on operational AI — Afterflow",
     description,
-    images: [
-      {
-        url: "/opengraph-image.png",
-        alt: "Afterflow — Your sandbox for operational decisions.",
-      },
-    ],
+    images: [siteConfig.socialImage],
   },
 };
 
 export default function InsightsPage() {
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": absoluteUrl("/insights/#webpage"),
+    url: absoluteUrl("/insights/"),
+    name: "Insights on operational AI",
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": absoluteUrl("/#website") },
+    publisher: { "@id": absoluteUrl("/#organization") },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: insights.map((insight, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: insight.title,
+        url: absoluteUrl(`/insights/${insight.slug}/`),
+      })),
+    },
+  };
+
   return (
     <>
       <a className="skip-link" href="#insights-content">
@@ -49,6 +59,10 @@ export default function InsightsPage() {
       </a>
       <SiteHeader />
       <main className="editorial-index" id="insights-content">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
+        />
         <div className="shell editorial-index__inner">
           <header>
             <Link href="/">Afterflow</Link>
@@ -58,16 +72,20 @@ export default function InsightsPage() {
 
           <div className="editorial-list">
             {insights.map((insight) => (
-              <Link href={`/insights/${insight.slug}`} key={insight.slug}>
+              <Link href={`/insights/${insight.slug}/`} key={insight.slug}>
                 <span>{insight.type}</span>
                 <h2>
                   {insight.titleEmphasis ? <em>{insight.title}</em> : insight.title}
                 </h2>
                 <p>{insight.excerpt}</p>
-                <small>{insight.published} · {insight.readTime}</small>
+                <small><time dateTime={insight.publishedIso}>{insight.published}</time> · {insight.readTime}</small>
               </Link>
             ))}
           </div>
+          <section className="insights-research" aria-labelledby="research-heading">
+            <h2 id="research-heading">Research behind our approach.</h2>
+            <ResearchEvidence />
+          </section>
         </div>
       </main>
     </>

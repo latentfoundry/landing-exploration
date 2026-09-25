@@ -1,0 +1,68 @@
+.company-vision-ribbon {
+  position: relative;
+  isolation: isolate;
+}
+
+.company-vision-ribbon .vision-ribbon-guides {
+  stroke: var(--ink);
+  stroke-width: .8;
+  opacity: .12;
+}
+
+.company-vision-ribbon .vision-ribbon-trace {
+  stroke: var(--ink);
+  stroke-width: .9;
+  opacity: .66;
+}
+
+.company-vision-ribbon .vision-ribbon-trace:nth-child(3n) { opacity: .38; }
+.company-vision-ribbon .vision-ribbon-trace:first-child,
+.company-vision-ribbon .vision-ribbon-trace:last-child { stroke-width: 1.25; opacity: .95; }
+.company-vision-ribbon .vision-ribbon-quarter--4 .vision-ribbon-trace { stroke: var(--accent); opacity: .78; }
+
+.company-vision-ribbon .vision-ribbon-arrow-clearance { stroke: var(--paper); stroke-width: 6; }
+.company-vision-ribbon .vision-ribbon-arrow { stroke: var(--ink); stroke-width: 1.6; }
+.company-vision-ribbon .vision-ribbon-direction-return .vision-ribbon-arrow { stroke: var(--accent); }
+
+.company-vision-ribbon .vision-ribbon-labels { position: absolute; inset: 0; pointer-events: none; }
+.company-vision-ribbon .vision-ribbon-label,
+.company-vision-ribbon .vision-ribbon-evidence {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+}
+.company-vision-ribbon .vision-ribbon-label { color: var(--ink); font-size: clamp(15px, 1.25vw, 18px); }
+.company-vision-ribbon .vision-ribbon-label--model { top: 9%; left: 50%; }
+.company-vision-ribbon .vision-ribbon-label--simulate { top: 52.5%; left: 90%; }
+.company-vision-ribbon .vision-ribbon-label--build { top: 94%; left: 50%; }
+.company-vision-ribbon .vision-ribbon-label--learn { top: 52.5%; left: 10%; }
+.company-vision-ribbon .vision-ribbon-evidence { top: 17%; left: 21%; color: var(--accent); font-size: clamp(14px, 1.1vw, 16px); }
+
+.company-vision-ribbon.is-revealed .vision-ribbon-trace {
+  animation: vision-ribbon-draw .72s var(--ribbon-delay) cubic-bezier(.25, .1, .25, 1) both;
+}
+.company-vision-ribbon.is-revealed .vision-ribbon-quarter--4 .vision-ribbon-trace { animation-duration: 1s; }
+.company-vision-ribbon.is-revealed .vision-ribbon-core { animation: vision-ribbon-informed .7s 3.46s ease-out both; }
+
+@keyframes vision-ribbon-draw {
+  from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  to { stroke-dasharray: 1; stroke-dashoffset: 0; }
+}
+
+@keyframes vision-ribbon-informed {
+  from { opacity: .42; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 650px) {
+  .company-vision-ribbon .vision-ribbon-label { font-size: 13px; }
+  .company-vision-ribbon .vision-ribbon-evidence { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-vision-ribbon.is-revealed .vision-ribbon-trace,
+  .company-vision-ribbon.is-revealed .vision-ribbon-core { animation: none; }
+}

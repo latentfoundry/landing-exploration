@@ -4,3 +4,11 @@
 .codex/
 .impeccable/
 /output/
+.pnpm-store/
+.cache/
+.env*
+!.env.example
+*.log
+*.pem
+playwright-report/
+test-results/
