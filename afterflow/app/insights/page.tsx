@@ -64,7 +64,7 @@ export default function InsightsPage() {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
         />
         <div className="shell editorial-index__inner">
-          <header>
+          <header data-header-stick>
             <Link href="/">Afterflow</Link>
             <h1>Insights on operational AI.</h1>
             <p>{description}</p>

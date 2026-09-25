@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const MOBILE_NAV_CLOSE_DURATION = 200;
@@ -21,9 +22,12 @@ function ArrowUpRight() {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileClosing, setMobileClosing] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -62,11 +66,74 @@ export function SiteHeader() {
   };
 
   useEffect(() => {
-    const updateScrolledState = () => setScrolled(window.scrollY > 24);
-    updateScrolledState();
-    window.addEventListener("scroll", updateScrolledState, { passive: true });
-    return () => window.removeEventListener("scroll", updateScrolledState);
-  }, []);
+    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const opening = document.querySelector<HTMLElement>("[data-header-stick]");
+    let openingVisible = opening ? opening.getBoundingClientRect().bottom > 0 : false;
+    let previousY = window.scrollY;
+    let anchorY = previousY;
+    let direction = 0;
+    let pointerAtTop = false;
+    let isHidden = headerRef.current?.classList.contains("is-hidden") ?? false;
+    let frame = 0;
+
+    const reveal = (shouldHide: boolean) => {
+      if (isHidden === shouldHide) return;
+      isHidden = shouldHide;
+      setHidden(shouldHide);
+    };
+
+    const update = () => {
+      frame = 0;
+      const y = Math.max(0, window.scrollY);
+      const nextDirection = Math.sign(y - previousY);
+      if (nextDirection && nextDirection !== direction) {
+        anchorY = previousY;
+        direction = nextDirection;
+      }
+      previousY = y;
+      setScrolled(y > 24);
+
+      if (openingVisible || y <= 5 || pointerAtTop) {
+        reveal(false);
+      } else if (Math.abs(y - anchorY) >= 12) {
+        // Beyond the opening chapter, deliberate scroll direction controls navigation.
+        reveal(direction > 0);
+      }
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    const onPointerMove = (event: PointerEvent) => {
+      if (!hover.matches || event.pointerType !== "mouse") return;
+      const revealHeight = isHidden ? 24 : (headerRef.current?.offsetHeight ?? 96);
+      const atTop = event.clientY <= revealHeight;
+      if (atTop === pointerAtTop) return;
+      pointerAtTop = atTop;
+      reveal(!openingVisible && window.scrollY > 5 && !atTop);
+    };
+    const onPointerLeave = () => {
+      pointerAtTop = false;
+      if (!openingVisible && window.scrollY > 5) reveal(true);
+    };
+
+    // Observe the actual opening section so the trigger follows its responsive height.
+    const openingObserver = new IntersectionObserver(([entry]) => {
+      openingVisible = entry.isIntersecting;
+      reveal(!openingVisible && window.scrollY > 5 && !pointerAtTop && direction >= 0);
+    });
+    if (opening) openingObserver.observe(opening);
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onPointerLeave);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      openingObserver.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener("pointerleave", onPointerLeave);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 900px)");
@@ -162,7 +229,8 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`site-header${scrolled ? " is-scrolled" : ""}${mobileVisible ? " is-menu-open" : ""}`}
+      ref={headerRef}
+      className={`site-header${scrolled ? " is-scrolled" : ""}${hidden ? " is-hidden" : ""}${mobileVisible ? " is-menu-open" : ""}`}
     >
       <div className="shell site-header__inner">
         <Link className="brand-lockup" data-arrive="brand" href="/#top" aria-label="Afterflow home">

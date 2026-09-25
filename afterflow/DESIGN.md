@@ -48,6 +48,8 @@ Preserve the original mark geometry in `public/brand-mark.svg` and the black-on-
 
 The shell is at most 1320px wide, with 64px desktop gutters, 40px below 1100px and 20px below 650px. Navigation becomes a mobile panel at 900px.
 
+The masthead stays visible through the opening section, marked with `data-header-stick`. Once that section leaves the viewport, downward scrolling hides it; upward scrolling or approaching the top edge with a mouse reveals it. A 500ms ease-out slide settles gently without a slow wind-up. Keyboard focus and an open menu keep it visible. The scrolled masthead uses a white frosted-glass layer, with opaque fallbacks for unsupported browsers and reduced transparency.
+
 Hero, introduction, each process step, audience, company vision and team experience are separate chapters. Their minimum height is `calc(100svh - var(--header-height) - 1px)`. Header heights are 96px on desktop, 76px below 900px, 72px below 650px and 56px on short screens. Centre each chapter's related content, but allow natural growth on short or zoomed viewports. Preserve ordinary scrolling without snap points or wheel trapping.
 
 The hero centres its headline and “Book a demo” action as one group, with the arrow independently near the bottom. The introduction gets its own screen. “How it works” is a brief entry before the three process chapters. Process artwork stacks between heading and explanation below 700px and is capped at 480px wide.

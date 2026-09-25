@@ -47,7 +47,7 @@ Independent research on Insights provides context, not an evaluation of Afterflo
 
 Use concise, concrete copy. Lead with the decision, show implementation, then explain how outcomes inform the next forecast. Keep assumptions, forecasts and observed results distinct. Avoid invented results, endorsements, integrations or compliance promises.
 
-The visual system is white with black text, expressive Solare headings, Novela reading text and selective bronze emphasis; see [DESIGN.md](DESIGN.md). “Book a demo” is the primary action and retains the supplied Calendly destination. Primary navigation contains Product, Research and Company. Research links to `/insights/`; the unconfigured Trust Centre remains non-interactive.
+The visual system is white with black text, expressive Solare headings, Novela reading text and selective bronze emphasis; see [DESIGN.md](DESIGN.md). “Book a demo” is the primary action and retains the supplied Calendly destination. Primary navigation contains Product, Research and Company. Research links to `/insights/`; the Trust Centre link is hidden until its content is ready.
 
 The homepage sequence is hero → standalone introduction → three process chapters → audience → four-stage engine → company vision → team experience → research and governance → FAQs → final CTA → footer. Preserve full-height chapter framing, ordinary slow scrolling and the concise five-plus-six FAQ disclosure structure.
 
