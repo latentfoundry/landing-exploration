@@ -5,7 +5,7 @@ import { ScrollInvitation } from "@/components/scroll-invitation";
 
 export function CinematicHero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-heading">
+    <section className="hero" id="top" aria-labelledby="hero-heading" data-header-stick>
       <div className="hero-main shell">
         <h1 id="hero-heading" aria-label="Make your company better at getting better.">
           <span className="hero-line"><CascadeText text="Make your company" /></span>

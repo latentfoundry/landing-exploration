@@ -95,7 +95,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
           <Link className="article-back" href="/insights/">
             Back to insights
           </Link>
-          <header>
+          <header data-header-stick>
             <p className="article-byline">
               <strong>
                 {insight.author}, {insight.authorRole} ·{" "}

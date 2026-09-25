@@ -189,7 +189,7 @@ export default function Home() {
             </div>
             <div className="credibility-details">
               <article id="evidence"><div data-reveal="focus"><h3>Research behind the engine.</h3><p>Trained on historical transformations and rollouts. Tested by comparing what we predict with what happens.</p><Link className="text-link" href="/insights/">Explore our research <ArrowUpRight /></Link></div></article>
-              <article id="trust"><div data-reveal="focus" data-reveal-delay="120"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p><span className="resource-pending" aria-disabled="true">Visit the Trust Centre</span></div></article>
+              <article id="trust"><div data-reveal="focus" data-reveal-delay="120"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p></div></article>
             </div>
           </div>
         </section>
