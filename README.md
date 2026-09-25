@@ -1,8 +1,6 @@
 # Afterflow
 
-This repository contains the current Afterflow landing site in [`afterflow/`](afterflow/). It is a statically exported Next.js application deployed to GitHub Pages at [afterflow.dev](https://afterflow.dev).
-
-## Local development
+The Afterflow website is a statically exported Next.js application in [`afterflow/`](afterflow/), published at [afterflow.dev](https://afterflow.dev).
 
 ```bash
 cd afterflow
@@ -10,12 +8,14 @@ pnpm install
 pnpm dev
 ```
 
-## Production checks
+Before committing site changes:
 
 ```bash
-cd afterflow
-NEXT_PUBLIC_SITE_URL=https://afterflow.dev pnpm lint
-NEXT_PUBLIC_SITE_URL=https://afterflow.dev pnpm build
+pnpm lint
+pnpm build
+pnpm check:export
 ```
 
-The root deployment workflow publishes `afterflow/out` whenever site or workflow files change on `main`. The `afterflow.dev` custom domain is configured in GitHub Pages settings rather than through a `CNAME` file.
+The [Pages workflow](.github/workflows/deploy-pages.yml) validates and publishes `afterflow/out/` when site or workflow changes reach `main`. The custom domain is configured in GitHub Pages settings.
+
+See the [application README](afterflow/README.md) for source locations, configuration and deployment checks.

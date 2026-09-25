@@ -5,26 +5,32 @@ import "./globals.css";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { absoluteUrl, serializeJsonLd, siteConfig, siteUrl } from "@/lib/site";
 
-const strawford = localFont({
+const solare = localFont({
   src: [
     {
-      path: "../public/fonts/strawford-light-webfont.woff2",
-      weight: "300",
+      path: "../assets/fonts/SolareVF.woff2",
+      weight: "200 900",
       style: "normal",
     },
     {
-      path: "../public/fonts/strawford-regular-webfont.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/strawford-medium-webfont.woff2",
-      weight: "500",
-      style: "normal",
+      path: "../assets/fonts/SolareItalicVF.woff2",
+      weight: "200 900",
+      style: "italic",
     },
   ],
-  variable: "--font-strawford",
+  variable: "--font-solare",
   display: "swap",
+});
+
+const novela = localFont({
+  src: [
+    { path: "../assets/fonts/Novela-Regular.otf", weight: "400", style: "normal" },
+    { path: "../assets/fonts/Novela-Semibold.otf", weight: "600", style: "normal" },
+    { path: "../assets/fonts/Novela-RegularItalic.otf", weight: "400", style: "italic" },
+  ],
+  variable: "--font-novela",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -35,13 +41,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "AI transformation",
-    "operational simulation",
-    "world model",
-    "decision intelligence",
-    "organisational change",
-  ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
@@ -53,38 +52,26 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon.ico?v=20", sizes: "16x16 32x32 48x48" },
+      { url: "/favicon/favicon-96x96.png?v=20", sizes: "96x96", type: "image/png" },
+      { url: "/favicon/favicon.svg?v=20", sizes: "any", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/favicon/apple-icon-180x180.png", sizes: "180x180" }],
+    apple: [{ url: "/favicon/apple-icon-180x180.png?v=20", sizes: "180x180" }],
   },
-  manifest: "/favicon/manifest.json",
+  manifest: "/favicon/manifest.json?v=20",
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
-    title: siteConfig.title,
+    title: siteConfig.socialTitle,
     description: siteConfig.socialDescription,
     url: "/",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Afterflow — Your sandbox for operational decisions.",
-      },
-    ],
+    images: [siteConfig.socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.title,
+    title: siteConfig.socialTitle,
     description: siteConfig.socialDescription,
-    images: [
-      {
-        url: "/opengraph-image.png",
-        alt: "Afterflow — Your sandbox for operational decisions.",
-      },
-    ],
+    images: [siteConfig.socialImage],
   },
   robots: {
     index: true,
@@ -100,8 +87,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#0a0a0a",
+  colorScheme: "light",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -116,9 +103,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         url: absoluteUrl("/"),
         logo: {
           "@type": "ImageObject",
-          url: absoluteUrl("/logo.png"),
-          width: 500,
-          height: 500,
+          url: absoluteUrl("/favicon/android-icon-512x512.png"),
+          width: 512,
+          height: 512,
         },
         description: siteConfig.description,
       },
@@ -135,13 +122,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <html lang="en" className={`${strawford.variable} dark antialiased`}>
+    <html lang="en" className={`${solare.variable} ${novela.variable}`}>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(entityJsonLd) }}
         />
-        <div className="site-grain" aria-hidden="true" />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
