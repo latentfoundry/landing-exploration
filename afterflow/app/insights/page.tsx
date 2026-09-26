@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { ResearchEvidence } from "@/components/research-evidence";
 import { insights } from "@/content/insights";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 
 const description =
-  "Evidence-led notes on simulation, rollout design and how AI changes teams, workflows and customer outcomes.";
+  "Research on modelling your business, choosing the right AI initiatives and learning from every rollout.";
 
 export const metadata: Metadata = {
   title: "Insights on operational AI",
@@ -65,7 +66,7 @@ export default function InsightsPage() {
         />
         <div className="shell editorial-index__inner">
           <header data-header-stick>
-            <Link href="/">Afterflow</Link>
+            <Link href="/#top">Back to home</Link>
             <h1>Insights on operational AI.</h1>
             <p>{description}</p>
           </header>
@@ -88,6 +89,7 @@ export default function InsightsPage() {
           </section>
         </div>
       </main>
+      <SiteFooter topHref="#insights-content" />
     </>
   );
 }

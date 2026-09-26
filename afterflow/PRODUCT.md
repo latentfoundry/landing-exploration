@@ -22,7 +22,7 @@ The promise is: **Make your company better at getting better.** The continuous n
 
 A conversation and a few examples can start an engagement. The team then agrees the use case, data access, integrations, controls and path to production. Delivery combines a business model, business case and stakeholder materials with working software, rollout and measurement.
 
-“Prototype in a day. Production in weeks.” expresses the focused-workflow proposition. Timing depends on scope, access and approvals; the FAQ commits to agreeing a production timeline for each use case.
+“Prototype in a day. Production in weeks.” expresses the focused-workflow proposition. Timing depends on scope, access, integrations and approvals; the FAQ frames these timings as targets for a focused use case.
 
 ## Capabilities and Constraints
 

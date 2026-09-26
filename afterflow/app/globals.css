@@ -138,29 +138,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .process-artwork { grid-column: 3; grid-row: 1 / 3; align-self: center; min-width: 0; }
 .process-illustration { display: block; width: 100%; height: auto; max-width: none; }
 
-/* The promise and one reader-selected audience share a single quiet interlude. */
-.audience-section { min-height: var(--chapter-height); display: flex; align-items: center; padding-block: 80px; }
-.delivery-promise { text-align: center; }
-.delivery-promise h2 { font-size: clamp(46px, 5.9vw, 90px); }
-.audience-layout { max-width: 730px; margin: 72px auto 0; }
-.audience-carousel { min-width: 0; border-block: 1px solid var(--line); padding: 32px 4px 18px; }
-.audience-slide { position: relative; min-height: 146px; overflow: hidden; touch-action: pan-y; }
-.audience-slide-size { display: grid; visibility: hidden; pointer-events: none; }
-.audience-slide-size > div { grid-area: 1 / 1; }
-.audience-track { position: absolute; inset: 0; display: grid; transition: transform .58s cubic-bezier(.22,.72,.18,1); }
-.audience-slide-copy { grid-area: 1 / 1; min-width: 0; padding-right: 28px; }
-.audience-slide-size > div { padding-right: 28px; }
-.audience-slide h3 { font: var(--type-subhead-weight) 30px/1.25 var(--font-display); font-variation-settings: "SRFF" var(--type-subhead-intensity); letter-spacing: -.02em; margin-bottom: 16px; }
-.audience-slide p { font-family: var(--font-body); font-size: 20px; font-weight: 400; line-height: 1.65; max-width: 49ch; }
-.audience-controls { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; }
-.audience-controls > span { font-size: 13px; font-variant-numeric: tabular-nums; }
-.audience-controls > span > span { color: var(--body); margin-left: 7px; }
-.audience-controls > div { display: flex; gap: 10px; }
-.audience-controls button { display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid #8b857e; border-radius: 50%; background: transparent; color: var(--ink); transition: color .25s, background .25s, border-color .25s; }
-.audience-controls button:hover { color: var(--paper); background: var(--ink); border-color: var(--ink); }
-.audience-controls svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
-@media (prefers-reduced-motion: reduce) { .audience-track { transition: none; } }
-
 .section-intro { text-align: center; }
 .flywheel-section.section-space { padding-block: 72px 80px; }
 .flywheel-section > .shell > .section-intro { margin-bottom: 48px; }
@@ -281,7 +258,6 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
 .article-body a { text-decoration: underline; text-underline-offset: 4px; color: var(--accent); }
 .article footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
 .article footer h2 { font-size: 34px; margin-bottom: 20px; }
-.article footer a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 
 
 
@@ -322,8 +298,6 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
   .process-artwork { grid-column: 2; grid-row: 1 / 4; }
   .process-steps p { font-size: 17px; padding-top: 24px; }
   .process-step-number { font-size: 26px; }
-  .audience-section { padding-block: 64px; }
-  .audience-layout { max-width: 600px; margin-top: 52px; }
   .product-vision { gap: 40px; }
   .team-experience li { padding: 12px; }
   .team-description { font-size: 18px; }
@@ -362,13 +336,6 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
   .process-step-number { font-size: 25px; }
   .process-steps h3 { font-size: clamp(36px, 9.4vw, 48px); }
   .process-steps p { font-size: 17px; }
-  .audience-section { padding-block: 48px; }
-  .delivery-promise h2 { font-size: clamp(36px, 10.1vw, 59px); line-height: 1.15; }
-  .audience-layout { margin-top: 42px; }
-  .audience-carousel { padding-block: 28px 12px; }
-  .audience-slide { min-height: 146px; }
-  .audience-slide h3 { font-size: 26px; margin-bottom: 12px; }
-  .audience-slide p { font-size: 17px; }
   .flywheel-section.section-space { padding-block: 64px; }
   .flywheel-section > .shell > .section-intro { margin-bottom: 36px; }
   .simulation-payoff { font-size: 17px; margin-top: 20px; }

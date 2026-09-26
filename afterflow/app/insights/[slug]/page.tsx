@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import AnimatedButton from "@/components/ui/animated-button";
+import { ArrowUpRight } from "@/components/ui/arrow-up-right";
+import { demoAction } from "@/lib/navigation";
 import { getInsight, insights } from "@/content/insights";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 
@@ -138,17 +142,19 @@ export default async function InsightPage({ params }: InsightPageProps) {
             })}
           </div>
           <footer>
-            <h2>Test the decision before rollout.</h2>
-            <a
-              href="https://calendly.com/mika-afterflow/afterflow-intro"
+            <h2>Start with <em>one</em> problem.</h2>
+            <AnimatedButton
+              as="a"
+              href={demoAction.href}
               target="_blank"
               rel="noreferrer"
             >
-              Book a demo
-            </a>
+              {demoAction.label} <ArrowUpRight />
+            </AnimatedButton>
           </footer>
         </article>
       </main>
+      <SiteFooter topHref="#article-content" />
     </>
   );
 }

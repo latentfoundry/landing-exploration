@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { CinematicHero } from "@/components/cinematic-hero";
 import { EngineExperience } from "@/components/engine-experience";
@@ -8,6 +7,8 @@ import { ProcessIllustration } from "@/components/process-illustration";
 import { CompanyVision } from "@/components/company-vision";
 import { ExperienceLogo } from "@/components/experience-logo";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { demoAction } from "@/lib/navigation";
 import AnimatedButton from "@/components/ui/animated-button";
 import { ArrowUpRight } from "@/components/ui/arrow-up-right";
 import { FocusRevealController } from "@/components/ui/focus-reveal";
@@ -18,17 +19,16 @@ import "@/components/engine-scroll.css";
 import "@/components/engine-art.css";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
-const contactUrl = "https://calendly.com/mika-afterflow/afterflow-intro";
 const processSteps = [
   { title: "Find what works.", copy: "Model your workflows, test possible changes and compare their cost, impact and expected return." },
-  { title: "Put it to work.", copy: "Our engineers build, test and deploy the solution with your team." },
+  { title: "Put it to work.", copy: "The engine turns the chosen plan into working software. Our engineers support integration, testing and rollout." },
   { title: "Learn from the results.", copy: "Compare the forecast with real results. Update your company model before the next decision." },
 ];
 const faqs = [
   {
     question: "How is Afterflow different from a consultancy?",
     core: true,
-    answer: "Our trained engine helps you choose the right initiatives and move them through stakeholder approvals faster. Your business knowledge stays in the model, so every project builds on the last.",
+    answer: "Afterflow’s engine keeps learning beyond the project. Every improvement is forecast, measured and fed back into your company model, so each one builds on the last.",
   },
   {
     question: "Why not just use ChatGPT or Claude?",
@@ -37,17 +37,17 @@ const faqs = [
   {
     question: "What data do we need to get started?",
     core: true,
-    answer: "A conversation and a few examples can be enough for an initial consultation. From there, we identify the documents, workflow data and permissions needed for your use case.",
+    answer: "A conversation and a few examples can be enough for an initial assessment. From there, we identify the documents, workflow data and permissions needed for your use case.",
   },
   {
     question: "How quickly can we get something working?",
     core: true,
-    answer: "We start with a focused demonstration. Then we agree a production timeline around your use case, integrations and approvals.",
+    answer: "For a focused use case, we aim for a working prototype in a day and production in weeks. Timing depends on scope, access, integrations and approvals.",
   },
   {
     question: "What do we actually receive?",
     core: true,
-    answer: "A digital twin of your business, a business case with stakeholder approval materials, and a working AI solution. We build, test and deploy with your team, then measure the results.",
+    answer: "A digital twin of your business, a business case with stakeholder approval materials, a working AI solution, and a record of forecast versus actual results after rollout.",
   },
   {
     question: "How do you measure accuracy?",
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     question: "How does Afterflow improve over time?",
-    answer: "We record predictions before rollout, compare them with what actually happens and update your model. Each initiative adds knowledge that helps us identify and evaluate the next.",
+    answer: "Each rollout adds evidence about your teams, systems and adoption patterns. The engine uses this to refine its forecasts and identify which initiatives are worth testing next.",
   },
   {
     question: "How do you handle data security and governance?",
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     question: "Could we build this ourselves?",
-    answer: "Yes. Afterflow also helps you test whether it’s the right investment, then connects your assumptions, simulations and actual results. Your team gets that learning system without having to build and maintain it.",
+    answer: "Yes. Afterflow can help you test whether building your own learning system is the right investment. It connects your assumptions, simulations and actual results, giving your team that system without having to build and maintain it.",
   },
 ];
 
@@ -168,7 +168,7 @@ export default function Home() {
           <div className="shell product-vision">
             <div className="vision-copy" data-reveal="focus"><h2 id="vision-heading">A company that knows<br /> how to <em>improve itself.</em></h2></div>
             <CompanyVision />
-            <p className="vision-description" data-reveal="focus">We’re building a self-improving simulation engine for discovering, testing and implementing operational improvements.</p>
+            <p className="vision-description" data-reveal="focus">We’re building a self-improving simulation engine your team can use to discover, test and implement operational improvements.</p>
           </div>
         </section>
 
@@ -214,20 +214,10 @@ export default function Home() {
         </section>
 
         <section className="final-scene" id="contact" aria-labelledby="contact-heading">
-          <div className="shell" data-reveal="letters"><h2 id="contact-heading" aria-label="Start with one problem."><CascadeText text="Start with" /> <em><CascadeText text="one" offset={9} /></em><br /><CascadeText text="problem." offset={12} /></h2><AnimatedButton as="a" href={contactUrl} target="_blank" rel="noreferrer">Book a demo <ArrowUpRight /></AnimatedButton></div>
+          <div className="shell" data-reveal="letters"><h2 id="contact-heading" aria-label="Start with one problem."><CascadeText text="Start with" /> <em><CascadeText text="one" offset={9} /></em><br /><CascadeText text="problem." offset={12} /></h2><AnimatedButton as="a" href={demoAction.href} target="_blank" rel="noreferrer">{demoAction.label} <ArrowUpRight /></AnimatedButton></div>
         </section>
       </main>
-      <footer className="site-footer">
-        <div className="shell footer-top">
-          <div className="footer-identity">
-            <Link className="footer-brand" href="/#top"><span className="brand-mark"><Image src="/brand-mark.svg" alt="" width={29} height={25} /></span>Afterflow</Link>
-            <p>Make your company<br />better at getting better.</p>
-          </div>
-          <nav aria-label="Footer navigation"><a href="#product">Product</a><Link href="/insights/">Research</Link><a href="#trust">Trust & governance</a><a href="#company">Company</a></nav>
-          <div className="footer-contact"><p>Every improvement starts with a conversation.</p><a className="text-link" href={contactUrl} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight /></a></div>
-        </div>
-        <div className="shell footer-bottom"><small>© 2026 Afterflow Inc.</small><a href="#top">Back to top <svg viewBox="0 0 12 16" fill="none" aria-hidden="true"><path d="M6 15V1m-5 5 5-5 5 5" stroke="currentColor" strokeWidth="1" /></svg></a></div>
-      </footer>
+      <SiteFooter topHref="#top" />
     </>
   );
 }
