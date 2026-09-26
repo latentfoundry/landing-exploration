@@ -12,15 +12,15 @@ colors:
 typography:
   display:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 260
+    fontWeight: 300
     fontVariation: '"SRFF" 620'
   headline:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 300
+    fontWeight: 350
     fontVariation: '"SRFF" 470'
   subhead:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 350
+    fontWeight: 400
     fontVariation: '"SRFF" 300'
   body:
     fontFamily: "var(--font-novela), Georgia, serif"
@@ -38,7 +38,7 @@ An editorial site built around expressive typography, open white space and purpo
 
 ## Typography and identity
 
-Use Solare for headings, the wordmark and display metrics. Use Novela for prose, labels, controls and articles. Solare upright supports weight 200–900 and serif intensity (`SRFF`) 200–700; its italic supports weight only. Display text uses 260/620, section headings 300/470, subheadings 350/300 and the wordmark 400/450. Novela emphasis uses the supplied 600 weight and italic face; font synthesis is disabled.
+Use Solare for headings, the wordmark and display metrics. Use Novela for prose, labels, controls and articles. Solare upright supports weight 200–900 and serif intensity (`SRFF`) 200–700; its italic supports weight only. Display text uses 300/620, section headings 350/470, subheadings 400/300 and the wordmark 400/450. Novela emphasis uses the supplied 600 weight and italic face; font synthesis is disabled.
 
 The hero and final invitation are deliberately oversized. Body copy is generally 17–21px, with a 17px phone base. Illustration labels scale within their artwork and should remain subordinate to section headings. Keep animated word groups together and expose each heading's complete accessible name once.
 
@@ -48,7 +48,7 @@ Preserve the original mark geometry in `public/brand-mark.svg` and the black-on-
 
 The shell is at most 1320px wide, with 64px desktop gutters, 40px below 1100px and 20px below 650px. Navigation becomes a mobile panel at 900px.
 
-The masthead stays visible through the opening section, marked with `data-header-stick`. Once that section leaves the viewport, downward scrolling hides it; upward scrolling or approaching the top edge with a mouse reveals it. A 500ms ease-out slide settles gently without a slow wind-up. Keyboard focus and an open menu keep it visible. The scrolled masthead uses a white frosted-glass layer, with opaque fallbacks for unsupported browsers and reduced transparency.
+On desktop, the masthead stays visible through the opening section, marked with `data-header-stick`. Once that section leaves the viewport, downward scrolling hides it; upward scrolling or approaching the top edge with a mouse reveals it. A 500ms ease-out slide settles gently without a slow wind-up. On mobile layouts and touch devices, the masthead stays visible throughout scrolling, without a slide transition. Keyboard focus and an open menu also keep it visible. The scrolled masthead uses a white frosted-glass layer, with opaque fallbacks for unsupported browsers and reduced transparency.
 
 Hero, introduction, each process step, audience, company vision and team experience are separate chapters. Their minimum height is `calc(100svh - var(--header-height) - 1px)`. Header heights are 96px on desktop, 76px below 900px, 72px below 650px and 56px on short screens. Centre each chapter's related content, but allow natural growth on short or zoomed viewports. Preserve ordinary scrolling without snap points or wheel trapping.
 
