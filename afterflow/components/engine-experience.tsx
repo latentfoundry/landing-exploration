@@ -18,7 +18,7 @@ const steps = [
   {
     label: "Build",
     title: "Turn the plan into software.",
-    copy: "The chosen scenario defines the integrations, approval rules and success measures. Our engineers build and test the solution with your team, then deploy it.",
+    copy: "The chosen scenario defines the integrations, approval rules and success measures. The engine uses that plan to build the solution, and our engineers test it with your team before it goes live.",
   },
   {
     label: "Learn",

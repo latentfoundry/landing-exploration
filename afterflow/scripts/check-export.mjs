@@ -36,6 +36,13 @@ for (const address of urls) {
   assert(graphs.some((node) => node["@type"] === "Organization"));
   assert(graphs.some((node) => node["@type"] === (url.pathname === "/" ? "WebPage" : url.pathname === "/insights/" ? "CollectionPage" : "BlogPosting")));
   assert(!html.includes("direction-contract"), "Design notes must not ship in page markup");
+  const primaryNavigation = html.match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+  assert(primaryNavigation, `${url.pathname}: shared primary navigation is missing`);
+  assert.equal(primaryNavigation.replace(/<[^>]+>/g, ""), "ProductResearchCompany", `${url.pathname}: primary navigation has drifted`);
+  assert(html.includes('class="site-footer"'), `${url.pathname}: shared footer is missing`);
+  assert(html.includes("Book a demo"), `${url.pathname}: current demo CTA is missing`);
+  assert(/Make your company<br\s*\/?\s*>better at getting better\./.test(html), `${url.pathname}: current footer positioning is missing`);
+  assert(!/Book a simulation|Your sandbox for operational decisions/i.test(html), `${url.pathname}: retired positioning is still published`);
 }
 
 for (const [pathname, html] of pages) {
@@ -60,4 +67,4 @@ const manifest = JSON.parse(readFileSync(resolve(root, "favicon/manifest.json"),
 for (const icon of manifest.icons) {
   assert(existsSync(exportPath(new URL(icon.src, new URL("/favicon/manifest.json", origin)).pathname)));
 }
-console.log(`Checked ${pages.size} exported pages: metadata, structured data, crawl access, local links and assets.`);
+console.log(`Checked ${pages.size} exported pages: shared navigation and positioning, metadata, structured data, crawl access, local links and assets.`);

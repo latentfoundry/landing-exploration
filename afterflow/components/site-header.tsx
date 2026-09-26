@@ -4,14 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { demoAction, navigationItems } from "@/lib/navigation";
 
 const MOBILE_NAV_CLOSE_DURATION = 200;
-
-const navigationItems = [
-  { href: "/#product", label: "Product" },
-  { href: "/insights/", label: "Research" },
-  { href: "/#company", label: "Company" },
-] as const;
 
 function ArrowUpRight() {
   return (
@@ -252,11 +247,11 @@ export function SiteHeader() {
         <a
           className="header-cta"
           data-arrive="navigation"
-          href="https://calendly.com/mika-afterflow/afterflow-intro"
+          href={demoAction.href}
           target="_blank"
           rel="noreferrer"
         >
-          Book a demo
+          {demoAction.label}
           <ArrowUpRight />
         </a>
 
@@ -296,12 +291,12 @@ export function SiteHeader() {
 
           <a
             className="mobile-nav__cta"
-            href="https://calendly.com/mika-afterflow/afterflow-intro"
+            href={demoAction.href}
             target="_blank"
             rel="noreferrer"
             onClick={closeMobileNavigation}
           >
-            Book a demo
+            {demoAction.label}
             <ArrowUpRight />
           </a>
         </div>

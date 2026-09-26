@@ -9,6 +9,9 @@ colors:
   accent: "#946b53"
   accent-deep: "#77523d"
   line: "#e2dfdb"
+  audience-paper: "#f8f7f4"
+rounded:
+  audience-card: "4px"
 typography:
   display:
     fontFamily: "var(--font-solare), Georgia, serif"
@@ -32,7 +35,7 @@ typography:
 
 ## Direction
 
-An editorial site built around expressive typography, open white space and purposeful vector illustrations. Black carries the story; bronze marks a selected word, route or outcome. Fine rules separate chapters. Avoid decorative hero imagery, ambient glows, shadows and generic card grids.
+An editorial site built around expressive typography, open white space and purposeful vector illustrations. Black carries the story; bronze marks a selected word, route or outcome. Fine rules separate chapters. Avoid decorative hero imagery, ambient glows, shadows and generic card grids. The audience chapter continues this light composition with pale paper cards, fine borders and generous spacing. Casa di Solare's specimen pages inform its expressive typography and restrained proportions.
 
 `app/globals.css` is the source of truth for responsive values. Component stylesheets contain illustration and engine-specific rules.
 
@@ -56,18 +59,23 @@ The hero centres its headline and “Book a demo” action as one group, with th
 
 The vision groups heading, loop and description. The team chapter groups heading, previous-experience logos and supporting sentence; research and governance follow separately. Phone team text is left-aligned, with two logo cells above three equal-height cells. FAQs show five core questions and a native expander for six more.
 
+The audience chapter centres one card with neighbouring cards peeking into view. Cards are 600px wide with a 32px gap on desktop; below 900px they use the smaller of 560px or the viewport minus 80px, with a 24px gap. Below 650px they use the viewport minus 64px, with a 16px gap. The strip reserves the tallest card's height so cycling does not shift the controls or surrounding chapter.
+
 ## Illustrations and controls
 
 - Process plates explain ranked initiatives, software build/deployment and forecast revision. Pale neutral fields support black structure and a bronze selection.
 - Model uses a company context graph; Simulate uses many flowing possible futures; Build assembles software; Learn revises a forecast. The context graph belongs to Model alone.
 - The company loop uses concentric elliptical paths, four stage labels and a bronze observed-results return around the mark.
 - Illustration figures are conceptual examples, not customer outcomes. Use concise accessible names without verbose hover descriptions.
-- Primary actions are square outlined “Book a demo” buttons with a black hover fill. Audience controls are 48px outlined circles. Preserve visible focus and meaningful link destinations.
+- Primary actions are square outlined “Book a demo” buttons with a black hover fill. Audience previous and next controls are fine outlined circles, with an unboxed pause control; all three have 44px targets. A separate group of five pagination dots has 44px-high targets, narrowed to 28px on phones. Preserve visible focus and meaningful link destinations.
+- Audience cards use an opaque pale paper fill, 1px warm neutral borders and 4px corners on a white section. Their flat treatment has no gradient, shadow or blur. Neighbouring cards recede through reduced opacity while retaining the active card's scale. Solare headings use weight 350 and serif intensity 620 at 44px on desktop and 34px on phones, paired with Novela copy at 18px and 17px respectively. The shared ink, body and bronze colours maintain continuity with adjacent chapters.
 
 ## Motion and performance
 
 Cascading letters, restrained reveals and diagram drawing support the reading sequence. Keep the existing slow Lenis scrolling. The four-stage engine pins one scene at a time, with labelled progress tied to actual scrolling and keyboard/previous/next controls. Cache geometry, avoid redundant DOM writes and pause frame work offscreen or in hidden tabs. Without JavaScript, all four stages remain readable in document order.
 
-The audience carousel cycles every six seconds with a stable-height sliding transition. It pauses offscreen, in hidden tabs and during hover, focus or touch; manual controls support keyboard and swipe. Only manual changes are announced. Reduced motion disables autoplay, drawing, spatial transitions and smooth scrolling.
+The audience carousel cycles infinitely every six seconds, settling over 650ms into a stable-height reading position. Pointer swipes follow the finger or mouse directly before settling; vertical scrolling and pinch zoom remain available. Previous/next buttons, arrow keys and five pagination buttons provide manual navigation. A persistent pause/resume control keeps automatic cycling stopped until resumed; temporary pauses apply offscreen, in hidden tabs and during hover, focus or touch. Only manual changes are announced. Without JavaScript, all five audience cards appear in document order. Reduced motion disables autoplay, track movement transitions, card opacity transitions and pagination transitions; the pause control is disabled when automatic cycling is unavailable. Across the site, reduced motion also disables drawing and smooth scrolling.
 
 Keep essential copy server-rendered. Home-only illustration CSS should remain scoped to the homepage. Solare is preloaded for the hero; Novela uses normal font discovery. The shared social preview is `app/opengraph-image.png`, described in `lib/site.ts`.
+
+Home, Insights and articles share `SiteHeader` and `SiteFooter`. Navigation labels and the demo CTA live in `lib/navigation.ts`; article closing actions use the same outlined button as the homepage. Research prose stays in Novela, with the shared Solare heading weights.
