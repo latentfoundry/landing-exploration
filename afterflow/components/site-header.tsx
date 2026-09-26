@@ -66,7 +66,7 @@ export function SiteHeader() {
   };
 
   useEffect(() => {
-    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const autoHide = window.matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)");
     const opening = document.querySelector<HTMLElement>("[data-header-stick]");
     let openingVisible = opening ? opening.getBoundingClientRect().bottom > 0 : false;
     let previousY = window.scrollY;
@@ -77,6 +77,7 @@ export function SiteHeader() {
     let frame = 0;
 
     const reveal = (shouldHide: boolean) => {
+      shouldHide = shouldHide && autoHide.matches;
       if (isHidden === shouldHide) return;
       isHidden = shouldHide;
       setHidden(shouldHide);
@@ -93,7 +94,7 @@ export function SiteHeader() {
       previousY = y;
       setScrolled(y > 24);
 
-      if (openingVisible || y <= 5 || pointerAtTop) {
+      if (!autoHide.matches || openingVisible || y <= 5 || pointerAtTop) {
         reveal(false);
       } else if (Math.abs(y - anchorY) >= 12) {
         // Beyond the opening chapter, deliberate scroll direction controls navigation.
@@ -104,7 +105,7 @@ export function SiteHeader() {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
     const onPointerMove = (event: PointerEvent) => {
-      if (!hover.matches || event.pointerType !== "mouse") return;
+      if (!autoHide.matches || event.pointerType !== "mouse") return;
       const revealHeight = isHidden ? 24 : (headerRef.current?.offsetHeight ?? 96);
       const atTop = event.clientY <= revealHeight;
       if (atTop === pointerAtTop) return;
@@ -123,12 +124,14 @@ export function SiteHeader() {
     });
     if (opening) openingObserver.observe(opening);
     update();
+    autoHide.addEventListener("change", update);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     document.documentElement.addEventListener("pointerleave", onPointerLeave);
     return () => {
       window.cancelAnimationFrame(frame);
       openingObserver.disconnect();
+      autoHide.removeEventListener("change", update);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
       document.documentElement.removeEventListener("pointerleave", onPointerLeave);

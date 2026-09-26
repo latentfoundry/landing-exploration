@@ -10,11 +10,11 @@
   --line: #e2dfdb;
   --font-display: var(--font-solare), Georgia, serif;
   --font-body: var(--font-novela), Georgia, serif;
-  --type-display-weight: 260;
+  --type-display-weight: 300;
   --type-display-intensity: 620;
-  --type-section-weight: 300;
+  --type-section-weight: 350;
   --type-section-intensity: 470;
-  --type-subhead-weight: 350;
+  --type-subhead-weight: 400;
   --type-subhead-intensity: 300;
   --header-height: 96px;
   --chapter-height: calc(100svh - var(--header-height) - 1px);
@@ -59,6 +59,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .site-header.is-scrolled { border-color: var(--line); }
 .site-header.is-hidden { transform: translateY(-100%); pointer-events: none; }
 .site-header.is-menu-open, .site-header:has(:focus-visible) { transform: none; pointer-events: auto; }
+/* Keep touch navigation stable, including during rotation and breakpoint changes. */
+@media (max-width: 900px), (hover: none), (pointer: coarse) {
+  .site-header, .site-header.is-hidden { transform: none; pointer-events: auto; transition: border-color .25s; }
+}
 /* Frost only the navigation layer; the page beneath supplies the texture. */
 @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
   .site-header.is-scrolled::before { background: rgb(255 255 255 / .78); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
