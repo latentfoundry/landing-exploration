@@ -264,6 +264,11 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
 .article footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
 .article footer h2 { font-size: 34px; margin-bottom: 20px; }
 
+.not-found-page { min-height: var(--chapter-height); display: grid; align-items: center; padding-block: 80px; }
+.not-found-page h1 { font-size: clamp(44px, 7.6vw, 104px); }
+.not-found-page p { max-width: 45ch; margin-top: 24px; }
+.not-found-page .animated-button { margin-top: 32px; }
+
 
 
 

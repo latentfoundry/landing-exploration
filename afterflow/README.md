@@ -25,6 +25,7 @@ Open `http://localhost:3000`.
 | `app/insights/` | Insights index and article routes |
 | `lib/site.ts` | Canonical origin, search metadata and social image descriptor |
 | `app/opengraph-image.png` | Current 1200×630 social preview |
+| `scripts/render-social-image.mjs` | Rebuilds the social preview from the original fonts and current CSS tokens |
 | `assets/fonts/` | Five fonts used by `next/font/local` |
 | `public/` | Brand mark and favicon assets |
 | `scripts/check-export.mjs` | Static export validation used locally and in CI |
@@ -42,6 +43,13 @@ pnpm check:export
 Build output goes to `out/`. Export validation checks route metadata, structured data, canonical URLs, robots/sitemap, local resources, anchors and favicon assets. Generated build output, local review captures and tooling caches are ignored; commit source changes and `pnpm-lock.yaml` when dependencies change.
 
 The root [GitHub Pages workflow](../.github/workflows/deploy-pages.yml) runs these checks with a frozen lockfile before uploading `out/`. Site or workflow changes on `main` deploy automatically; `workflow_dispatch` also permits a manual run. The custom domain is configured in Pages settings, without a repository `CNAME` file.
+
+After changing display typography, run `pnpm render:social` with an isolated Chrome
+listening on debugging port 9257 (or set `SOCIAL_BROWSER_URL`). It regenerates the
+1200×630 PNG using the current display and wordmark tokens from `app/globals.css`.
+Increase the version in `siteConfig.socialImage.url` when replacing the image so
+Research, articles and Twitter previews request the updated asset. The homepage
+Open Graph tag also receives Next.js's automatic image content hash.
 
 ## Canonical URLs and search
 

@@ -8,6 +8,11 @@ const origin = new URL(/^https?:\/\//i.test(configuredOrigin) ? configuredOrigin
 const sitemap = readFileSync(resolve(root, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const pages = new Map();
+const socialImage = readFileSync(resolve(root, "opengraph-image.png"));
+assert.equal(socialImage.readUInt32BE(16), 1200, "Social image must be 1200px wide");
+assert.equal(socialImage.readUInt32BE(20), 630, "Social image must be 630px high");
+assert(socialImage.equals(readFileSync(resolve("app/opengraph-image.png"))), "Exported social image is stale");
+let sharedSocialUrl;
 
 function exportPath(pathname) {
   const path = resolve(root, `.${decodeURIComponent(pathname)}`);
@@ -28,6 +33,17 @@ for (const address of urls) {
   const metadata = [...html.matchAll(/<(?:link|meta)\b[^>]+>/g)].map((match) => attributes(match[0]));
   assert.equal(metadata.find((tag) => tag.rel === "canonical")?.href, address);
   assert.equal(metadata.find((tag) => tag.property === "og:url")?.content, address);
+  const ogImage = new URL(metadata.find((tag) => tag.property === "og:image")?.content);
+  const twitterImage = new URL(metadata.find((tag) => tag.name === "twitter:image")?.content);
+  for (const image of [ogImage, twitterImage]) {
+    assert.equal(image.origin, origin.origin, `${url.pathname}: social image must use the public origin`);
+    assert.equal(image.pathname, "/opengraph-image.png", `${url.pathname}: shared social image is missing`);
+    assert(image.search, `${url.pathname}: social image needs a cache version`);
+  }
+  sharedSocialUrl ??= twitterImage.href;
+  assert.equal(twitterImage.href, sharedSocialUrl, `${url.pathname}: Twitter image version has drifted`);
+  // Next's homepage file convention uses a content hash; other pages use siteConfig.
+  if (url.pathname !== "/") assert.equal(ogImage.href, sharedSocialUrl, `${url.pathname}: Open Graph image version has drifted`);
   assert(metadata.find((tag) => tag.name === "description")?.content, "Each route needs a description");
   assert(!metadata.some((tag) => tag.name === "robots" && tag.content?.includes("noindex")));
   assert.equal((html.match(/<h1\b/g) || []).length, 1, "Each route needs one primary heading");
@@ -60,6 +76,10 @@ for (const [pathname, html] of pages) {
 }
 
 const robots = readFileSync(resolve(root, "robots.txt"), "utf8");
+const notFound = readFileSync(resolve(root, "404.html"), "utf8");
+assert(notFound.includes("Page not found.") && notFound.includes('class="site-header"') && notFound.includes('class="site-footer"'), "404 must use the shared site layout");
+assert(notFound.includes("Back to home"), "404 needs a recovery link");
+assert(/name="robots" content="[^"]*noindex/.test(notFound), "404 must not be indexed");
 assert(robots.includes("User-Agent: *") && robots.includes("Allow: /"));
 assert(robots.includes(`Sitemap: ${origin.origin}/sitemap.xml`));
 assert(!existsSync(resolve(root, "fonts")), "Original font collections must not be published");
@@ -67,4 +87,4 @@ const manifest = JSON.parse(readFileSync(resolve(root, "favicon/manifest.json"),
 for (const icon of manifest.icons) {
   assert(existsSync(exportPath(new URL(icon.src, new URL("/favicon/manifest.json", origin)).pathname)));
 }
-console.log(`Checked ${pages.size} exported pages: shared navigation and positioning, metadata, structured data, crawl access, local links and assets.`);
+console.log(`Checked ${pages.size} content pages and 404: shared layout, social images, metadata, structured data, crawl access, local links and assets.`);
