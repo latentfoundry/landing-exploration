@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint",
+    "render:social": "node scripts/render-social-image.mjs",
     "check:export": "node scripts/check-export.mjs"
   },
   "dependencies": {
