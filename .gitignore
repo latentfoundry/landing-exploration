@@ -4,6 +4,7 @@
 .codex/
 .impeccable/
 /output/
+/artifacts/
 .pnpm-store/
 .cache/
 .env*
