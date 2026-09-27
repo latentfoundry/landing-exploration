@@ -4,7 +4,7 @@
 .scroll-engine__panel { display: grid; grid-template-columns: .88fr 1.22fr; gap: clamp(36px, 6vw, 100px); align-items: center; padding-block: 68px; border-top: 1px solid var(--line); }
 .scroll-engine__panel[hidden] { display: none; }
 .scroll-engine__story, .scroll-engine__artwork { min-width: 0; min-height: 0; }
-.scroll-engine__fallback-label { margin-bottom: 22px; color: var(--accent); font-family: var(--font-display); font-size: 28px; }
+.scroll-engine__fallback-label { margin-bottom: 22px; color: var(--accent); font-family: var(--font-display); font-size: 28px; font-weight: var(--type-detail-weight); font-variation-settings: "SRFF" var(--type-detail-intensity); }
 .scroll-engine__story h3 { max-width: 15ch; margin: 0 0 28px; color: var(--ink); font-size: clamp(36px, 4.25vw, 64px); font-weight: var(--type-subhead-weight); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }
 .scroll-engine__copy { max-width: 38ch; color: var(--body); font-family: var(--font-body); font-size: clamp(16px, 1.45vw, 19px); line-height: 1.65; text-wrap: pretty; }
 .scroll-engine .engine-art { min-width: 0; width: 100%; }
@@ -31,7 +31,7 @@
 .scroll-engine[data-enhanced="true"] .engine-art > svg { min-height: 0; flex: 0 1 auto; width: 100%; height: auto; max-height: min(520px, 100%); }
 .scroll-engine__progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); width: 100%; }
 .scroll-engine__step { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; min-width: 0; min-height: 50px; padding: 4px 0 0; border: 0; background: transparent; color: var(--body); text-align: left; }
-.scroll-engine__step-label { font-family: var(--font-display); font-size: 28px; font-weight: var(--type-subhead-weight); line-height: 1.15; letter-spacing: -.015em; transition: color .2s; }
+.scroll-engine__step-label { font-family: var(--font-display); font-size: 28px; font-weight: var(--type-detail-weight); font-variation-settings: "SRFF" var(--type-detail-intensity); line-height: 1.15; letter-spacing: -.015em; transition: color .2s; }
 .scroll-engine__step[data-state="current"] { color: var(--ink); }
 .scroll-engine__step:hover { color: var(--accent-deep); }
 .scroll-engine__step:focus-visible { outline-offset: 5px; }

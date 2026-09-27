@@ -15,16 +15,16 @@ rounded:
 typography:
   display:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 300
-    fontVariation: '"SRFF" 620'
+    fontWeight: 600
+    fontVariation: '"SRFF" 700'
   headline:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 350
-    fontVariation: '"SRFF" 470'
+    fontWeight: 700
+    fontVariation: '"SRFF" 530'
   subhead:
     fontFamily: "var(--font-solare), Georgia, serif"
-    fontWeight: 400
-    fontVariation: '"SRFF" 300'
+    fontWeight: 800
+    fontVariation: '"SRFF" 340'
   body:
     fontFamily: "var(--font-novela), Georgia, serif"
     fontWeight: 400
@@ -41,7 +41,7 @@ An editorial site built around expressive typography, open white space and purpo
 
 ## Typography and identity
 
-Use Solare for headings, the wordmark and display metrics. Use Novela for prose, labels, controls and articles. Solare upright supports weight 200–900 and serif intensity (`SRFF`) 200–700; its italic supports weight only. Display text uses 300/620, section headings 350/470, subheadings 400/300 and the wordmark 400/450. Novela emphasis uses the supplied 600 weight and italic face; font synthesis is disabled.
+Use Solare for headings, the wordmark and display metrics. Use Novela for prose, labels, controls and articles. Solare upright supports weight 200–900 and serif intensity (`SRFF`) 200–700; its italic supports weight only. Display text uses 600/700, section headings 700/530, subheadings 800/340 and the wordmark 800/510. These double the original weights and scale intensity by 700/620, rounded to the nearest ten. Solare details—process numbers and metrics, engine stage labels and mobile navigation—use 800/230, scaling their previous inherited 400 weight and the font's default intensity of 200. All Solare roles explicitly set both axes; italic receives the weight change only. Novela emphasis uses the supplied 600 weight and italic face; font synthesis is disabled.
 
 The hero and final invitation are deliberately oversized. Body copy is generally 17–21px, with a 17px phone base. Illustration labels scale within their artwork and should remain subordinate to section headings. Keep animated word groups together and expose each heading's complete accessible name once.
 
@@ -68,7 +68,7 @@ The audience chapter centres one card with neighbouring cards peeking into view.
 - The company loop uses concentric elliptical paths, four stage labels and a bronze observed-results return around the mark.
 - Illustration figures are conceptual examples, not customer outcomes. Use concise accessible names without verbose hover descriptions.
 - Primary actions are square outlined “Book a demo” buttons with a black hover fill. Audience previous and next controls are fine outlined circles, with an unboxed pause control; all three have 44px targets. A separate group of five pagination dots has 44px-high targets, narrowed to 28px on phones. Preserve visible focus and meaningful link destinations.
-- Audience cards use an opaque pale paper fill, 1px warm neutral borders and 4px corners on a white section. Their flat treatment has no gradient, shadow or blur. Neighbouring cards recede through reduced opacity while retaining the active card's scale. Solare headings use weight 350 and serif intensity 620 at 44px on desktop and 34px on phones, paired with Novela copy at 18px and 17px respectively. The shared ink, body and bronze colours maintain continuity with adjacent chapters.
+- Audience cards use an opaque pale paper fill, 1px warm neutral borders and 4px corners on a white section. Their flat treatment has no gradient, shadow or blur. Neighbouring cards recede through reduced opacity while retaining the active card's scale. Solare headings use weight 700 and serif intensity 700 at 44px on desktop and 34px on phones, paired with Novela copy at 18px and 17px respectively. The shared ink, body and bronze colours maintain continuity with adjacent chapters.
 
 ## Motion and performance
 

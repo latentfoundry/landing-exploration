@@ -12,10 +12,10 @@
 .process-scenario-chosen rect { stroke: var(--accent); }
 .process-scenario-check { stroke: var(--accent); stroke-width: 1.8; }
 .process-forecast-card rect, .process-results-card rect { fill: var(--paper); }
-.process-illustration .process-metric { font: 400 44px var(--font-display); letter-spacing: -.025em; }
+.process-illustration .process-metric { font: var(--type-detail-weight) 44px var(--font-display); font-variation-settings: "SRFF" var(--type-detail-intensity); letter-spacing: -.025em; }
 .process-illustration .process-metric-label { font-size: 18px; fill: var(--body); }
 .process-illustration .process-annotation { font-size: 18px; fill: var(--body); }
-.process-illustration .process-rank { font-family: var(--font-display); font-size: 25px; fill: var(--body); }
+.process-illustration .process-rank { font-family: var(--font-display); font-size: 25px; font-weight: var(--type-detail-weight); font-variation-settings: "SRFF" var(--type-detail-intensity); fill: var(--body); }
 .process-scenario-chosen .process-rank { fill: var(--accent); }
 .process-rank-track { stroke: #e9e5df; stroke-width: 3; }
 .process-rank-bar { stroke: #aaa297; stroke-width: 3; }
@@ -44,7 +44,7 @@
 .process-results-now { fill: var(--ink); stroke: #f6f5f3; stroke-width: 2; }
 .process-illustration .process-results-next { fill: var(--accent); font-size: 18px; }
 .process-metric-divider { stroke: var(--line); stroke-width: 1; }
-.process-illustration .process-result-metric { font: 400 34px var(--font-display); fill: var(--body); letter-spacing: -.02em; }
+.process-illustration .process-result-metric { font: var(--type-detail-weight) 34px var(--font-display); font-variation-settings: "SRFF" var(--type-detail-intensity); fill: var(--body); letter-spacing: -.02em; }
 .process-illustration .process-result-actual { fill: var(--ink); }
 
 /* The complete diagram is the default; each sequence runs once on its own reveal. */
