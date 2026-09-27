@@ -5,7 +5,7 @@ colors:
   paper: "#ffffff"
   paper-deep: "#f5f4f2"
   ink: "#171717"
-  body: "#57534e"
+  body: "#44403b"
   accent: "#946b53"
   accent-deep: "#77523d"
   line: "#e2dfdb"
@@ -43,7 +43,7 @@ An editorial site built around expressive typography, open white space and purpo
 
 Use Solare for headings, the wordmark and display metrics. Use Novela for prose, labels, controls and articles. Solare upright supports weight 200–900 and serif intensity (`SRFF`) 200–700; its italic supports weight only. Display text uses 600/700, section headings 700/530, subheadings 800/340 and the wordmark 800/510. These double the original weights and scale intensity by 700/620, rounded to the nearest ten. Solare details—process numbers and metrics, engine stage labels and mobile navigation—use 800/230, scaling their previous inherited 400 weight and the font's default intensity of 200. All Solare roles explicitly set both axes; italic receives the weight change only. Novela emphasis uses the supplied 600 weight and italic face; font synthesis is disabled.
 
-The hero and final invitation are deliberately oversized. Body copy is generally 17–21px, with a 17px phone base. Illustration labels scale within their artwork and should remain subordinate to section headings. Keep animated word groups together and expose each heading's complete accessible name once.
+The hero and final invitation are deliberately oversized. Novela prose stays at Regular 400, with a 20px desktop base and an 18px phone base. Supporting paragraphs use 17–22px, with 23px article standfirsts on desktop and smaller secondary footer copy. Engine copy has a 16px minimum in compact scenes. The darker body colour improves contrast without switching paragraphs to Semibold. Illustration labels scale within their artwork and should remain subordinate to section headings. Keep animated word groups together and expose each heading's complete accessible name once.
 
 Preserve the original mark geometry in `public/brand-mark.svg` and the black-on-white square favicons. The five active font files live in `assets/fonts/`; preserve the supplied formats and follow [font handling notes](assets/README.md).
 
@@ -68,7 +68,7 @@ The audience chapter centres one card with neighbouring cards peeking into view.
 - The company loop uses concentric elliptical paths, four stage labels and a bronze observed-results return around the mark.
 - Illustration figures are conceptual examples, not customer outcomes. Use concise accessible names without verbose hover descriptions.
 - Primary actions are square outlined “Book a demo” buttons with a black hover fill. Audience previous and next controls are fine outlined circles, with an unboxed pause control; all three have 44px targets. A separate group of five pagination dots has 44px-high targets, narrowed to 28px on phones. Preserve visible focus and meaningful link destinations.
-- Audience cards use an opaque pale paper fill, 1px warm neutral borders and 4px corners on a white section. Their flat treatment has no gradient, shadow or blur. Neighbouring cards recede through reduced opacity while retaining the active card's scale. Solare headings use weight 700 and serif intensity 700 at 44px on desktop and 34px on phones, paired with Novela copy at 18px and 17px respectively. The shared ink, body and bronze colours maintain continuity with adjacent chapters.
+- Audience cards use an opaque pale paper fill, 1px warm neutral borders and 4px corners on a white section. Their flat treatment has no gradient, shadow or blur. Neighbouring cards recede through reduced opacity while retaining the active card's scale. Solare headings use weight 700 and serif intensity 700 at 44px on desktop and 34px on phones, paired with Novela copy at 19px and 18px respectively. The shared ink, body and bronze colours maintain continuity with adjacent chapters.
 
 ## Motion and performance
 
