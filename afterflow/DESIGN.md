@@ -57,7 +57,7 @@ Hero, introduction, each process step, audience, company vision and team experie
 
 The hero centres its headline and “Book a demo” action as one group, with the arrow independently near the bottom. The introduction gets its own screen. “How it works” is a brief entry before the three process chapters. Process artwork stacks between heading and explanation below 700px and is capped at 480px wide.
 
-The vision groups heading, loop and description. The team chapter groups heading, previous-experience logos and supporting sentence; research and governance follow separately. Phone team text is left-aligned, with two logo cells above three equal-height cells. FAQs show five core questions and a native expander for six more.
+The vision groups heading, loop and description. The team chapter groups heading, previous-experience logos and supporting sentence; research and governance follow separately. Phone team text is left-aligned, with four logo cells in a two-by-two grid. FAQs show five core questions and a native expander for six more.
 
 The audience chapter centres one card with neighbouring cards peeking into view. Cards are 600px wide with a 32px gap on desktop; below 900px they use the smaller of 560px or the viewport minus 80px, with a 24px gap. Below 650px they use the viewport minus 64px, with a 16px gap. The strip reserves the tallest card's height so cycling does not shift the controls or surrounding chapter.
 

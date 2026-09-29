@@ -182,7 +182,6 @@ export default function Home() {
                   <li><ExperienceLogo company="uber" name="Uber" /></li>
                   <li><ExperienceLogo company="bhp" name="BHP" /></li>
                   <li><ExperienceLogo company="atlassian" name="Atlassian" /></li>
-                  <li><ExperienceLogo company="mistral" name="Mistral" /></li>
                 </ul>
               </div>
               <p className="team-description" data-reveal="focus">Our team has delivered <strong>production AI</strong> and enterprise transformations across <em>Fortune 500 and ASX-listed</em> organisations.</p>
