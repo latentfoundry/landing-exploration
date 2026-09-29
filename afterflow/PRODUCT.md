@@ -35,7 +35,7 @@ A conversation and a few examples can start an engagement. The team then agrees 
 
 ## Evidence and Claim Boundaries
 
-Apple, Uber, BHP, Atlassian and Mistral represent previous team experience. They are not Afterflow customers, partners or endorsements. No approved customer testimonials or measured customer outcomes have been supplied.
+Apple, Uber, BHP and Atlassian represent previous team experience. They are not Afterflow customers, partners or endorsements. No approved customer testimonials or measured customer outcomes have been supplied.
 
 The process diagrams use +32% projected gain and +32% forecast versus +28% observed improvement as conceptual scenario values. They are not benchmark results or live product screenshots. Preserve concise accessible descriptions without adding verbose hover copy.
 

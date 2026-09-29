@@ -1,34 +1,7 @@
 type ExperienceLogoProps = {
-  company: "apple" | "atlassian" | "uber" | "bhp" | "mistral";
+  company: "apple" | "atlassian" | "uber" | "bhp";
   name: string;
 };
-
-const mistralCatCells = [
-  [1, 0],
-  [5, 0],
-  [1, 1],
-  [2, 1],
-  [4, 1],
-  [5, 1],
-  [0, 2],
-  [1, 2],
-  [2, 2],
-  [3, 2],
-  [4, 2],
-  [5, 2],
-  [6, 2],
-  [0, 3],
-  [1, 3],
-  [3, 3],
-  [5, 3],
-  [6, 3],
-  [0, 4],
-  [1, 4],
-  [2, 4],
-  [4, 4],
-  [5, 4],
-  [6, 4],
-] as const;
 
 export function ExperienceLogo({ company, name }: ExperienceLogoProps) {
   if (company === "apple") {
@@ -70,14 +43,5 @@ export function ExperienceLogo({ company, name }: ExperienceLogoProps) {
     );
   }
 
-  return (
-    <span className="experience-logo experience-logo--mistral" role="img" aria-label={name}>
-      <svg viewBox="0 0 28 20" aria-hidden="true">
-        {mistralCatCells.map(([x, y]) => (
-          <rect width="4" height="4" x={x * 4} y={y * 4} key={`${x}-${y}`} />
-        ))}
-      </svg>
-      <span aria-hidden="true">Mistral</span>
-    </span>
-  );
+  return null;
 }

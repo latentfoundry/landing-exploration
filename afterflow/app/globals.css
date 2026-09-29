@@ -160,13 +160,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .credibility-section { padding-bottom: 64px; }
 .team-chapter { min-height: var(--chapter-height); display: flex; flex-direction: column; justify-content: center; padding-block: 64px; }
 .team-experience { width: 100%; max-width: 1100px; margin: 48px auto 0; }
-.team-experience ul { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 16px; align-items: stretch; }
+.team-experience ul { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: stretch; }
 .team-experience li { display: flex; align-items: center; justify-content: center; min-height: 126px; padding: 20px; border: 1px solid var(--line); color: var(--ink); }
 .team-experience.is-revealed li { animation: logo-arrive .85s cubic-bezier(.16,1,.3,1) both; }
 .team-experience li:nth-child(2) { animation-delay: .09s; }
 .team-experience li:nth-child(3) { animation-delay: .18s; }
 .team-experience li:nth-child(4) { animation-delay: .27s; }
-.team-experience li:nth-child(5) { animation-delay: .36s; }
 @keyframes logo-arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 .experience-logo { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; opacity: .74; }
 .experience-logo svg { width: 100%; height: auto; fill: currentColor; }
@@ -174,8 +173,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .experience-logo--uber { width: 72px; }
 .experience-logo--atlassian { width: 124px; }
 .experience-logo--bhp { font: 700 29px/1 Arial,sans-serif; letter-spacing: -.04em; }
-.experience-logo--mistral { gap: 8px; font: 600 20px/1 Arial,sans-serif; letter-spacing: -.03em; }
-.experience-logo--mistral svg { width: 24px; height: 17px; }
 .team-description { max-width: 660px; text-align: center; margin: 42px auto 0; font-size: 21px; }
 .team-description strong { color: var(--ink); font-weight: 600; }
 .team-description em { color: var(--accent-deep); }
@@ -279,7 +276,6 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
   .process-steps p { font-size: 19px; }
   .credibility-details, .research-findings, .faq-layout { gap: 44px; }
   .experience-logo--atlassian { width: 108px; }
-  .experience-logo--mistral { font-size: 18px; }
 }
 @media (max-width: 900px) {
   :root { --header-height: 76px; }
@@ -359,14 +355,11 @@ details[open] > summary > .disclosure-icon { transform: rotate(45deg); }
   .team-chapter .section-intro { text-align: left; }
   .team-chapter h2 { font-size: clamp(36px, 9.5vw, 46px); line-height: 1.12; }
   .team-experience { margin-top: 32px; }
-  .team-experience ul { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
-  .team-experience li { grid-column: span 2; min-height: 76px; padding: 12px 6px; }
-  .team-experience li:nth-child(-n+2) { grid-column: span 3; }
+  .team-experience ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .team-experience li { min-height: 76px; padding: 12px 6px; }
   .experience-logo--bhp { font-size: 24px; }
   .experience-logo--uber { width: 60px; }
   .experience-logo--atlassian { width: 86px; }
-  .experience-logo--mistral { gap: 5px; font-size: 14px; }
-  .experience-logo--mistral svg { width: 18px; height: 13px; }
   .team-description { text-align: left; margin-top: 28px; font-size: 18px; }
   .credibility-details { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
   .credibility-details h3 { font-size: 28px; }
