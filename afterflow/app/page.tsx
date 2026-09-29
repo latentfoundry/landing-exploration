@@ -175,7 +175,7 @@ export default function Home() {
         <section className="credibility-section" id="company" aria-labelledby="company-heading">
           <div className="shell">
             <div className="team-chapter">
-              <div className="section-intro" data-reveal="focus"><h2 id="company-heading">Engineers who’ve<br />shipped at scale.</h2></div>
+              <div className="section-intro" data-reveal="focus"><h2 id="company-heading">Previously at</h2></div>
               <div className="team-experience" data-reveal="surface">
                 <ul aria-label="Previous experience of the team, not customers or endorsements">
                   <li><ExperienceLogo company="apple" name="Apple" /></li>
