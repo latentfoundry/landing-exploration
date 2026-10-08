@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 
 const descriptions = [
   "Initiatives ranked by potential, with the strongest selected.",
@@ -103,12 +104,12 @@ function LearnFromResults() {
 }
 
 export function ProcessIllustration({ step }: { step: number }) {
-  return <figure className="process-plate" data-reveal="image" data-reveal-threshold="0.24">
+  return <AnimatedGroup as="figure" className="process-plate" preset="none" animateChildren={false} amount={0.24}>
     <svg className="process-illustration editorial-art-plate" viewBox="0 0 600 350" fill="none" role="img" aria-label={descriptions[step]}>
       <rect className="process-plate-surface" width="600" height="350" rx="5" />
       {step === 0 && <FindWhatWorks />}
       {step === 1 && <PutItToWork />}
       {step === 2 && <LearnFromResults />}
     </svg>
-  </figure>;
+  </AnimatedGroup>;
 }

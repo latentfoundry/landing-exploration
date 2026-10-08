@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 type SharedProps = {
   children: ReactNode;
   className?: string;
+  variant?: "default" | "compact";
 };
 
 type AnimatedButtonProps =
@@ -14,9 +15,10 @@ export default function AnimatedButton(props: AnimatedButtonProps) {
     as,
     children,
     className = "",
+    variant = "default",
     ...rest
   } = props;
-  const classes = ["animated-button", className].filter(Boolean).join(" ");
+  const classes = ["animated-button", variant === "compact" && "animated-button--compact", className].filter(Boolean).join(" ");
 
   const content = (
     <span className="animated-button__label">{children}</span>

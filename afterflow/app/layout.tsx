@@ -5,31 +5,43 @@ import "./globals.css";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { absoluteUrl, serializeJsonLd, siteConfig, siteUrl } from "@/lib/site";
 
-const solare = localFont({
+const tiempos = localFont({
   src: [
     {
-      path: "../assets/fonts/SolareVF.woff2",
-      weight: "200 900",
+      path: "../assets/fonts/TestTiemposHeadline-Light-BF66457a50df5a0.otf",
+      weight: "300",
       style: "normal",
     },
     {
-      path: "../assets/fonts/SolareItalicVF.woff2",
-      weight: "200 900",
+      path: "../assets/fonts/TestTiemposHeadline-LightItalic-BF66457a5088153.otf",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "../assets/fonts/TestTiemposHeadline-Regular-BF66457a508e31a.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/TestTiemposHeadline-RegularItalic-BF66457a5091d70.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../assets/fonts/TestTiemposHeadline-Medium-BF66457a509b4ec.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/TestTiemposHeadline-MediumItalic-BF66457a50b4260.otf",
+      weight: "500",
       style: "italic",
     },
   ],
-  variable: "--font-solare",
+  variable: "--font-tiempos",
   display: "swap",
-});
-
-const novela = localFont({
-  src: [
-    { path: "../assets/fonts/Novela-Regular.otf", weight: "400", style: "normal" },
-    { path: "../assets/fonts/Novela-Semibold.otf", weight: "600", style: "normal" },
-    { path: "../assets/fonts/Novela-RegularItalic.otf", weight: "400", style: "italic" },
-  ],
-  variable: "--font-novela",
-  display: "swap",
+  adjustFontFallback: "Times New Roman",
+  // Let the browser request the faces each page actually uses.
   preload: false,
 });
 
@@ -88,7 +100,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#ffffff",
+  themeColor: "#f9f9f9",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -122,7 +134,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <html lang="en" className={`${solare.variable} ${novela.variable}`}>
+    <html lang="en" className={tiempos.variable}>
       <body>
         <script
           type="application/ld+json"

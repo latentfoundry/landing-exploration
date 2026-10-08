@@ -42,10 +42,10 @@
 .company-vision-ribbon .vision-ribbon-evidence { top: 17%; left: 21%; color: var(--accent); font-size: clamp(14px, 1.1vw, 16px); }
 
 .company-vision-ribbon.is-revealed .vision-ribbon-trace {
-  animation: vision-ribbon-draw .72s var(--ribbon-delay) cubic-bezier(.25, .1, .25, 1) both;
+  animation: vision-ribbon-draw .5s var(--ribbon-delay) cubic-bezier(.25, .1, .25, 1) both;
 }
-.company-vision-ribbon.is-revealed .vision-ribbon-quarter--4 .vision-ribbon-trace { animation-duration: 1s; }
-.company-vision-ribbon.is-revealed .vision-ribbon-core { animation: vision-ribbon-informed .7s 3.46s ease-out both; }
+.company-vision-ribbon.is-revealed .vision-ribbon-quarter--4 .vision-ribbon-trace { animation-duration: .7s; }
+.company-vision-ribbon.is-revealed .vision-ribbon-core { animation: vision-ribbon-informed .4s 1.9s ease-out both; }
 
 @keyframes vision-ribbon-draw {
   from { stroke-dasharray: 1; stroke-dashoffset: 1; }

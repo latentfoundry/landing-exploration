@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import "./company-vision.css";
 
 const contours = Array.from({ length: 11 }, (_, index) => ({
@@ -22,7 +23,7 @@ const directionMarks = [
 
 export function CompanyVision() {
   return (
-    <figure className="company-vision-art company-vision-ribbon" data-reveal="image" data-reveal-duration="900">
+    <AnimatedGroup as="figure" className="company-vision-art company-vision-ribbon" preset="none" animateChildren={false} amount={0.2}>
       <svg viewBox="0 0 640 400" role="img" aria-label="Model, simulate, build and learn: observed results inform the next decision." fill="none">
 
         <g className="vision-ribbon-guides" aria-hidden="true">
@@ -36,7 +37,7 @@ export function CompanyVision() {
               className="vision-ribbon-trace"
               d={quarterArc(rx, ry, stage)}
               pathLength="1"
-              style={{ "--ribbon-delay": `${0.16 + stage * 0.72 + index * 0.014}s` } as CSSProperties}
+              style={{ "--ribbon-delay": `${0.08 + stage * 0.4 + index * 0.01}s` } as CSSProperties}
             />)}
           </g>
         ))}
@@ -62,6 +63,6 @@ export function CompanyVision() {
         <span className="vision-ribbon-label vision-ribbon-label--learn">Learn</span>
         <span className="vision-ribbon-evidence">Observed<br />results</span>
       </div>
-    </figure>
+    </AnimatedGroup>
   );
 }
