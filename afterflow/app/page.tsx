@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CinematicHero } from "@/components/cinematic-hero";
 import { EngineExperience } from "@/components/engine-experience";
 import { AudienceBenefits } from "@/components/audience-benefits";
@@ -11,8 +10,9 @@ import { SiteFooter } from "@/components/site-footer";
 import { demoAction } from "@/lib/navigation";
 import AnimatedButton from "@/components/ui/animated-button";
 import { ArrowUpRight } from "@/components/ui/arrow-up-right";
-import { FocusRevealController } from "@/components/ui/focus-reveal";
-import { CascadeText } from "@/components/ui/cascade-text";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
+import { LineHoverLink } from "@/components/ui/line-hover-link";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 import "@/components/editorial-art.css";
 import "@/components/engine-scroll.css";
@@ -120,30 +120,26 @@ export default function Home() {
       <SiteHeader />
       <main id="main-content">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }} />
-        <FocusRevealController />
         <CinematicHero />
 
         <section className="introduction-section" id="introduction" aria-label="What Afterflow does">
           <div className="shell">
-            <p className="introduction-copy" data-reveal="letters" data-reveal-threshold="0.36" data-reveal-duration="1800">
-              <span className="sr-only">Afterflow simulates your business, builds the right AI solution, and learns from every rollout.</span>
-              <span className="introduction-line"><CascadeText text="Afterflow simulates your business," /></span>
-              <span className="introduction-line"><CascadeText text="builds the right AI solution," offset={30} /></span>
-              <span className="introduction-line"><CascadeText text="and learns from every rollout." offset={53} /></span>
-            </p>
+            <TextEffect className="introduction-copy" per="line" preset="slide" duration={0.75}>
+              {"Afterflow simulates your business,\nbuilds the right AI solution,\nand learns from every rollout."}
+            </TextEffect>
           </div>
         </section>
 
         <section className="process-section section-space" id="product" aria-labelledby="product-heading">
           <div className="shell">
-            <div className="process-intro" data-reveal="letters"><h2 id="product-heading" aria-label="How it works."><CascadeText text="How it works." /></h2></div>
+            <div className="process-intro"><TextEffect as="h2" id="product-heading" per="char">How it works.</TextEffect></div>
             <ol className="process-steps" role="list">{processSteps.map((step, index) => (
               <li key={step.title}>
-                <div className="process-step-content" data-reveal="surface" data-reveal-threshold="0.12">
+                <div className="process-step-content">
                   <span className="process-step-number" aria-hidden="true">0{index + 1}.</span>
                   <h3>{step.title}</h3>
                   <div className="process-artwork"><ProcessIllustration step={index} /></div>
-                  <p>{step.copy}</p>
+                  <AnimatedGroup as="p" animateChildren={false}>{step.copy}</AnimatedGroup>
                 </div>
               </li>
             ))}</ol>
@@ -152,50 +148,50 @@ export default function Home() {
 
         <section className="audience-section" id="who-its-for" aria-labelledby="audience-heading">
           <div className="shell">
-            <div className="delivery-promise" data-reveal="letters"><h2 id="audience-heading" aria-label="Prototype in a day. Production in weeks."><CascadeText text="Prototype in a day." /><br /><CascadeText text="Production in" offset={16} /> <em><CascadeText text="weeks." offset={28} /></em></h2></div>
-            <div className="audience-layout" data-reveal="surface"><AudienceBenefits /></div>
+            <div className="delivery-promise"><TextEffect as="h2" id="audience-heading" per="char" preset="slide" emphasis="weeks.">{"Prototype in a day.\nProduction in weeks."}</TextEffect></div>
+            <div className="audience-layout"><AudienceBenefits /></div>
           </div>
         </section>
 
         <section className="flywheel-section section-space" id="flywheel" aria-labelledby="flywheel-heading">
           <div className="shell">
-            <div className="section-intro" data-reveal="focus"><h2 id="flywheel-heading">Rehearse your <em>next move.</em></h2><p className="simulation-payoff">Test what a change could deliver.<br />Before your business depends on it.</p></div>
+            <div className="section-intro"><h2 id="flywheel-heading">Rehearse your <em>next move.</em></h2><p className="simulation-payoff">Test what a change could deliver.<br />Before your business depends on it.</p></div>
             <EngineExperience />
           </div>
         </section>
 
         <section className="vision-section section-space" id="engine" aria-labelledby="vision-heading">
           <div className="shell product-vision">
-            <div className="vision-copy" data-reveal="focus"><h2 id="vision-heading">A company that knows<br /> how to <em>improve itself.</em></h2></div>
+            <div className="vision-copy"><TextEffect as="h2" id="vision-heading" per="char" preset="fade-in-blur" emphasis="improve itself.">{"A company that knows\nhow to improve itself."}</TextEffect></div>
             <CompanyVision />
-            <p className="vision-description" data-reveal="focus">We’re building a self-improving simulation engine your team can use to discover, test and implement operational improvements.</p>
+            <p className="vision-description">We’re building a self-improving simulation engine your team can use to discover, test and implement operational improvements.</p>
           </div>
         </section>
 
         <section className="credibility-section" id="company" aria-labelledby="company-heading">
           <div className="shell">
             <div className="team-chapter">
-              <div className="section-intro" data-reveal="focus"><h2 id="company-heading">Previously at</h2></div>
-              <div className="team-experience" data-reveal="surface">
-                <ul aria-label="Previous experience of the team, not customers or endorsements">
-                  <li><ExperienceLogo company="apple" name="Apple" /></li>
-                  <li><ExperienceLogo company="uber" name="Uber" /></li>
-                  <li><ExperienceLogo company="bhp" name="BHP" /></li>
-                  <li><ExperienceLogo company="atlassian" name="Atlassian" /></li>
-                </ul>
+              <div className="section-intro"><h2 id="company-heading">Previously at</h2></div>
+              <div className="team-experience">
+                <AnimatedGroup as="ul" asChild="li" preset="slide" stagger={0.07} aria-label="Previous experience of the team, not customers or endorsements">
+                  <ExperienceLogo company="apple" name="Apple" />
+                  <ExperienceLogo company="uber" name="Uber" />
+                  <ExperienceLogo company="bhp" name="BHP" />
+                  <ExperienceLogo company="atlassian" name="Atlassian" />
+                </AnimatedGroup>
               </div>
-              <p className="team-description" data-reveal="focus">Our team has delivered <strong>production AI</strong> and enterprise transformations across <em>Fortune 500 and ASX-listed</em> organisations.</p>
+              <p className="team-description">Our team has delivered <strong>production AI</strong> and enterprise transformations across <em>Fortune 500 and ASX-listed</em> organisations.</p>
             </div>
-            <div className="credibility-details">
-              <article id="evidence"><div data-reveal="focus"><h3>Research behind the engine.</h3><p>Trained on historical transformations and rollouts. Tested by comparing what we predict with what happens.</p><Link className="text-link" href="/insights/">Explore our research <ArrowUpRight /></Link></div></article>
-              <article id="trust"><div data-reveal="focus" data-reveal-delay="120"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p></div></article>
-            </div>
+            <AnimatedGroup className="credibility-details" asChild="article" stagger={0.1}>
+              <div id="evidence"><h3>Research behind the engine.</h3><p>Trained on historical transformations and rollouts. Tested by comparing what we predict with what happens.</p><LineHoverLink className="text-link" href="/insights/" icon={<ArrowUpRight />}>Explore our research</LineHoverLink></div>
+              <div id="trust"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p></div>
+            </AnimatedGroup>
           </div>
         </section>
 
         <section className="faq-section section-space" id="faq" aria-labelledby="faq-heading">
           <div className="shell faq-layout">
-            <h2 id="faq-heading" data-reveal="focus">FAQs.</h2>
+            <h2 id="faq-heading">FAQs.</h2>
             <div className="faq-list">
               {faqs.filter(item => item.core).map(item => <FaqItem key={item.question} item={item} />)}
               <details className="faq-more">
@@ -213,7 +209,10 @@ export default function Home() {
         </section>
 
         <section className="final-scene" id="contact" aria-labelledby="contact-heading">
-          <div className="shell" data-reveal="letters"><h2 id="contact-heading" aria-label="Start with one problem."><CascadeText text="Start with" /> <em><CascadeText text="one" offset={9} /></em><br /><CascadeText text="problem." offset={12} /></h2><AnimatedButton as="a" href={demoAction.href} target="_blank" rel="noreferrer">{demoAction.label} <ArrowUpRight /></AnimatedButton></div>
+          <div className="shell">
+            <TextEffect as="h2" id="contact-heading" per="char" emphasis="one" preset="slide">{"Start with one\nproblem."}</TextEffect>
+            <AnimatedGroup animateChildren={false} delay={0.5} duration={0.4}><AnimatedButton as="a" href={demoAction.href} target="_blank" rel="noreferrer">{demoAction.label} <ArrowUpRight /></AnimatedButton></AnimatedGroup>
+          </div>
         </section>
       </main>
       <SiteFooter topHref="#top" />

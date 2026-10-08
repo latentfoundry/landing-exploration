@@ -5,16 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { demoAction, navigationItems } from "@/lib/navigation";
+import AnimatedButton from "@/components/ui/animated-button";
+import { LineHoverLink } from "@/components/ui/line-hover-link";
+import { ArrowUpRight } from "@/components/ui/arrow-up-right";
 
 const MOBILE_NAV_CLOSE_DURATION = 200;
-
-function ArrowUpRight() {
-  return (
-    <svg viewBox="0 0 20 20" aria-hidden="true">
-      <path d="M5 15 15 5M7 5h8v8" />
-    </svg>
-  );
-}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -238,13 +233,13 @@ export function SiteHeader() {
 
         <nav className="site-nav" data-arrive="navigation" aria-label="Primary navigation">
           {navigationItems.map((item) => (
-            <Link href={item.href} key={item.href}>
+            <LineHoverLink href={item.href} key={item.href}>
               {item.label}
-            </Link>
+            </LineHoverLink>
           ))}
         </nav>
 
-        <a
+        <AnimatedButton as="a" variant="compact"
           className="header-cta"
           data-arrive="navigation"
           href={demoAction.href}
@@ -253,7 +248,7 @@ export function SiteHeader() {
         >
           {demoAction.label}
           <ArrowUpRight />
-        </a>
+        </AnimatedButton>
 
         <div className={mobileOpen ? "mobile-nav is-open" : "mobile-nav"}>
           <button
@@ -289,7 +284,7 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <a
+          <AnimatedButton as="a"
             className="mobile-nav__cta"
             href={demoAction.href}
             target="_blank"
@@ -298,7 +293,7 @@ export function SiteHeader() {
           >
             {demoAction.label}
             <ArrowUpRight />
-          </a>
+          </AnimatedButton>
         </div>
       </div>
     </header>

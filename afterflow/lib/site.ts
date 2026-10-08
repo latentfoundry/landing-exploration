@@ -32,7 +32,7 @@ export const siteConfig = {
   socialDescription:
     "Make your company better at getting better. Afterflow simulates your business, builds the right AI solution and learns from every rollout.",
   socialImage: {
-    url: "/opengraph-image.png?v=29",
+    url: "/opengraph-image.png?v=34",
     width: 1200,
     height: 630,
     alt: "Afterflow — Make your company better at getting better.",

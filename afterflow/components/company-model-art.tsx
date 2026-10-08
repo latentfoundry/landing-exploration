@@ -87,9 +87,9 @@ const focusedEntities = new Set([workflow, ...primaryDependencies]);
 const focusedRelationships = [...relationships.entries()].filter(([key]) => contextKeys.has(key));
 const pathBetween = (a: number, b: number) => `M${entities[a].x} ${entities[a].y}L${entities[b].x} ${entities[b].y}`;
 const labels = [
-  { text: "Team", x: 164, y: 101, delay: 2.65 },
-  { text: "Knowledge", x: 325, y: 72, delay: 2.77 },
-  { text: "Systems", x: 520, y: 181, delay: 2.89 },
+  { text: "Team", x: 164, y: 101, delay: 1.45 },
+  { text: "Knowledge", x: 325, y: 72, delay: 1.52 },
+  { text: "Systems", x: 520, y: 181, delay: 1.6 },
 ];
 
 function EntityMark({ entity, selected = false }: { entity: Entity; selected?: boolean }) {
@@ -120,19 +120,19 @@ export function CompanyModelArt() {
         className="model-context-local-edge"
         d={pathBetween(edge.a, edge.b)}
         pathLength="1"
-        style={{ "--context-delay": `${2.65 + index * .045}s` } as CSSProperties}
+        style={{ "--context-delay": `${1.45 + index * .022}s` } as CSSProperties}
       />)}
       {primaryDependencies.map((dependency, index) => <path
         key={dependency}
         className="model-context-primary-edge"
         d={pathBetween(workflow, dependency)}
         pathLength="1"
-        style={{ "--context-delay": `${1.95 + index * .14}s` } as CSSProperties}
+        style={{ "--context-delay": `${1.05 + index * .09}s` } as CSSProperties}
       />)}
       {[...focusedEntities].filter(entity => entity !== workflow).map((entity, index) => <g
         className={`model-context-focus-entity${primaryDependencies.includes(entity) ? " model-context-focus-entity--primary" : ""}`}
         key={entities[entity].id}
-        style={{ "--context-delay": `${2.6 + index * .045}s` } as CSSProperties}
+        style={{ "--context-delay": `${1.4 + index * .022}s` } as CSSProperties}
       ><EntityMark entity={entities[entity]} selected /></g>)}
     </g>
     <circle className="model-context-focus-ring" cx={entities[workflow].x} cy={entities[workflow].y} r="15" />
