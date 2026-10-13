@@ -38,7 +38,10 @@ export function ExperienceLogo({ company, name }: ExperienceLogoProps) {
   if (company === "bhp") {
     return (
       <span className="experience-logo experience-logo--bhp" role="img" aria-label={name}>
-        <span aria-hidden="true">BHP</span>
+        <svg viewBox="0 0 156 60" aria-hidden="true">
+          <path fillRule="evenodd" d="M0 0h23c14 0 22 6 22 16 0 6-3 10-8 13 7 2 11 7 11 14 0 11-9 17-24 17H0V0Zm14 12v12h9c6 0 9-2 9-6s-3-6-9-6h-9Zm0 24v12h10c6 0 10-2 10-6s-4-6-10-6H14ZM108 0h25c15 0 23 8 23 20s-8 20-23 20h-10v20h-15V0Zm15 12v16h9c6 0 10-3 10-8s-4-8-10-8h-9Z" />
+          <path d="M52 0h15v23h22V0h15v60H89V37H67v23H52V0Z" />
+        </svg>
       </span>
     );
   }

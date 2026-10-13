@@ -7,6 +7,10 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
+    "data/**",
+    "private/**",
+    // Imported publication code and vendored animation library retain their source style.
+    "public/interventionbench/**",
     ".impeccable/review/**",
     ".impeccable/references/**",
     // Default ignores of eslint-config-next:

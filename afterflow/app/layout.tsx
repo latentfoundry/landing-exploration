@@ -8,41 +8,41 @@ import { absoluteUrl, serializeJsonLd, siteConfig, siteUrl } from "@/lib/site";
 const tiempos = localFont({
   src: [
     {
-      path: "../assets/fonts/TestTiemposHeadline-Light-BF66457a50df5a0.otf",
+      path: "../assets/fonts/TestTiemposHeadline-Light-BF66457a50df5a0.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../assets/fonts/TestTiemposHeadline-LightItalic-BF66457a5088153.otf",
+      path: "../assets/fonts/TestTiemposHeadline-LightItalic-BF66457a5088153.woff2",
       weight: "300",
       style: "italic",
     },
     {
-      path: "../assets/fonts/TestTiemposHeadline-Regular-BF66457a508e31a.otf",
+      path: "../assets/fonts/TestTiemposHeadline-Regular-BF66457a508e31a.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/fonts/TestTiemposHeadline-RegularItalic-BF66457a5091d70.otf",
+      path: "../assets/fonts/TestTiemposHeadline-RegularItalic-BF66457a5091d70.woff2",
       weight: "400",
       style: "italic",
     },
     {
-      path: "../assets/fonts/TestTiemposHeadline-Medium-BF66457a509b4ec.otf",
+      path: "../assets/fonts/TestTiemposHeadline-Medium-BF66457a509b4ec.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../assets/fonts/TestTiemposHeadline-MediumItalic-BF66457a50b4260.otf",
+      path: "../assets/fonts/TestTiemposHeadline-MediumItalic-BF66457a50b4260.woff2",
       weight: "500",
       style: "italic",
     },
   ],
   variable: "--font-tiempos",
-  display: "swap",
+  display: "optional",
   adjustFontFallback: "Times New Roman",
-  // Let the browser request the faces each page actually uses.
-  preload: false,
+  // Start the compact local fonts with the document; never swap them in after first paint.
+  preload: true,
 });
 
 export const metadata: Metadata = {

@@ -1,0 +1,23 @@
+.research-index { padding-block: 64px 112px; min-height: calc(78svh - var(--header-height)); }
+.research-intro h1 { font-size: clamp(40px, 4.2vw, 64px); }
+.research-intro p { max-width: 92ch; margin-top: 24px; font-size: clamp(18px, 1.4vw, 21px); line-height: 1.65; }
+.research-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; margin-top: 40px; }
+.research-feature { display: flex; flex-direction: column; align-items: flex-start; }
+.research-feature__image { position: relative; width: 100%; aspect-ratio: 9 / 4; border: 1px solid var(--line); overflow: hidden; }
+.research-feature__image img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.research-feature__overlay { position: absolute; inset: 0; display: grid; place-items: center; background: color-mix(in srgb, var(--ink) 68%, transparent); color: var(--paper); font-size: 28px; font-weight: 300; opacity: 0; pointer-events: none; transition: opacity .25s ease-out; }
+.research-feature__image:hover .research-feature__overlay, .research-feature:focus-visible .research-feature__overlay { opacity: 1; }
+.research-feature__heading { display: flex; align-items: baseline; gap: 20px; width: 100%; margin-top: 20px; }
+.research-feature h2 { font-size: clamp(26px, 2vw, 30px); font-weight: 400; line-height: 1.3; transition: color .2s; }
+.research-feature p { max-width: 54ch; margin-top: 10px; font-size: 18px; line-height: 1.6; }
+.research-feature time { margin-top: 20px; font-size: 15px; color: var(--body); font-variant-numeric: tabular-nums; }
+.research-feature:is(:hover, :focus-visible) h2 { color: var(--accent); }
+.research-feature__image:hover img, .research-feature:focus-visible .research-feature__image img { transform: scale(1.025); }
+@media (max-width: 900px) {
+  .research-index { padding-block: 52px 96px; }
+  .research-intro p { margin-top: 20px; }
+  .research-features { grid-template-columns: 1fr; max-width: 640px; margin-top: 40px; }
+  .research-feature__heading { gap: 16px; margin-top: 20px; }
+  .research-feature time { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .research-feature h2, .research-feature__overlay, .research-feature__image img { transition: none; } .research-feature__image:hover img, .research-feature:focus-visible .research-feature__image img { transform: none; } }

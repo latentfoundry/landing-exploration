@@ -277,7 +277,7 @@ export function SiteHeader() {
         <div className="mobile-nav__content">
           <nav className="mobile-nav__links" aria-label="Primary navigation">
             {navigationItems.map((item) => (
-              <Link href={item.href} onClick={closeMobileNavigation} key={item.href}>
+              <Link href={item.href} scroll={item.href.includes("#")} onClick={closeMobileNavigation} key={item.href}>
                 <span>{item.label}</span>
                 <ArrowUpRight />
               </Link>
