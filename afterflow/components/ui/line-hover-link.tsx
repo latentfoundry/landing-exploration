@@ -6,6 +6,8 @@ export function LineHoverLink({ children, icon, className = "", href, ...props }
   const content = <><span className="line-hover-label">{children}</span>{icon}</>;
   const classes = ["line-hover-link", className].filter(Boolean).join(" ");
   return href.startsWith("/")
-    ? <Link href={href} className={classes} {...props}>{content}</Link>
+    // The shared scroll provider owns fresh page positioning. Let Next handle
+    // hash targets only; its fragment scrolling can otherwise select the footer.
+    ? <Link href={href} scroll={href.includes("#")} className={classes} {...props}>{content}</Link>
     : <a href={href} className={classes} {...props}>{content}</a>;
 }

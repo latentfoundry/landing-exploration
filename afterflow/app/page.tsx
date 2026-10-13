@@ -12,7 +12,6 @@ import AnimatedButton from "@/components/ui/animated-button";
 import { ArrowUpRight } from "@/components/ui/arrow-up-right";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
-import { LineHoverLink } from "@/components/ui/line-hover-link";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 import "@/components/editorial-art.css";
 import "@/components/engine-scroll.css";
@@ -127,6 +126,18 @@ export default function Home() {
             <TextEffect className="introduction-copy" per="line" preset="slide" duration={0.75}>
               {"Afterflow simulates your business,\nbuilds the right AI solution,\nand learns from every rollout."}
             </TextEffect>
+            <section className="team-chapter" id="company" aria-labelledby="company-heading">
+              <div className="section-intro"><TextEffect as="h2" id="company-heading" per="char" preset="slide">Previously at</TextEffect></div>
+              <div className="team-experience">
+                <AnimatedGroup as="ul" asChild="li" preset="fade" stagger={0.12} duration={0.65} amount={0.3} aria-label="Previous experience of the team, not customers or endorsements">
+                  <ExperienceLogo company="apple" name="Apple" />
+                  <ExperienceLogo company="uber" name="Uber" />
+                  <ExperienceLogo company="bhp" name="BHP" />
+                  <ExperienceLogo company="atlassian" name="Atlassian" />
+                </AnimatedGroup>
+              </div>
+              <p className="team-description">Our team has delivered <strong>production AI</strong> and enterprise transformations across <em>Fortune 500 and ASX-listed</em> organisations.</p>
+            </section>
           </div>
         </section>
 
@@ -168,23 +179,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="credibility-section" id="company" aria-labelledby="company-heading">
+        <section className="credibility-section" aria-label="Research and governance">
           <div className="shell">
-            <div className="team-chapter">
-              <div className="section-intro"><h2 id="company-heading">Previously at</h2></div>
-              <div className="team-experience">
-                <AnimatedGroup as="ul" asChild="li" preset="slide" stagger={0.07} aria-label="Previous experience of the team, not customers or endorsements">
-                  <ExperienceLogo company="apple" name="Apple" />
-                  <ExperienceLogo company="uber" name="Uber" />
-                  <ExperienceLogo company="bhp" name="BHP" />
-                  <ExperienceLogo company="atlassian" name="Atlassian" />
-                </AnimatedGroup>
-              </div>
-              <p className="team-description">Our team has delivered <strong>production AI</strong> and enterprise transformations across <em>Fortune 500 and ASX-listed</em> organisations.</p>
-            </div>
             <AnimatedGroup className="credibility-details" asChild="article" stagger={0.1}>
-              <div id="evidence"><h3>Research behind the engine.</h3><p>Trained on historical transformations and rollouts. Tested by comparing what we predict with what happens.</p><LineHoverLink className="text-link" href="/insights/" icon={<ArrowUpRight />}>Explore our research</LineHoverLink></div>
-              <div id="trust"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p></div>
+              <div id="evidence"><h3>Research behind the engine.</h3><p>Trained on historical transformations and rollouts. Tested by comparing what we predict with what happens.</p><AnimatedButton as="a" href="/research/">Explore our research<ArrowUpRight /></AnimatedButton></div>
+              <div id="trust"><h3>Controls agreed before rollout.</h3><p>We agree on data access, controls and approvals with your team. Decisions, assumptions and results stay on record for review.</p><AnimatedButton disabled>Trust Centre<ArrowUpRight /></AnimatedButton></div>
             </AnimatedGroup>
           </div>
         </section>
