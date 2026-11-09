@@ -1,0 +1,282 @@
+<!-- RehearsalBench research page. Edit this file, then run `pnpm build:rehearsalbench` to regenerate page.html.
+     {{placeholders}} are filled from public/research/rehearsalbench/leaderboard.csv and figure data in scripts/build-rehearsalbench.mjs. -->
+<main id="main" class="rb-main">
+
+<!-- Hero: one particle scene behind the title. -->
+<div class="particle-story cinema-layout hero-story" id="top">
+  <div class="particle-stage" aria-hidden="true"><canvas class="world-canvas"></canvas><canvas class="world-gl"></canvas></div>
+  <div class="story-scenes">
+    <section class="scene is-hero" id="intro" data-scene="hero" aria-labelledby="hero-question">
+      <div class="scene-copy">
+        <h1 class="benchmark-announcement">Introducing RehearsalBench</h1>
+        <p class="benchmark-date"><time datetime="2026-11">November 2026</time></p>
+        <h2 id="hero-question" class="benchmark-question">Can AI run your company?</h2>
+        <p class="hero-copy">We gave ten AI models a simulated bank contact centre, built from real call records. Each one made a plan and predicted what it would do. We ran every plan 600&nbsp;times.</p>
+        <p class="hero-actions">
+          <a class="button" href="{{link:paper}}">Read the paper <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          <a class="story-start" href="#findings">See the results <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v13m-5-5 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        </p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/hero.svg" alt="" width="900" height="620" loading="eager">
+    </section>
+  </div>
+</div>
+
+<!-- Summary: the four numbers. -->
+<section class="band summary" id="findings" aria-labelledby="findings-title">
+  <div class="wrap">
+    <header class="section-head">
+      <h2 id="findings-title">Models get the direction right and the size wrong.</h2>
+    </header>
+    <ul class="stats">
+      <li><strong>6.8<small>%</small></strong><span>simulated running cost cut by the best model, GPT-6 Astra.</span></li>
+      <li><strong>77<small>%</small></strong><span>less forecast error than always predicting no effect.</span></li>
+      <li><strong>5<small>×</small></strong><span>roughly how much every model overstated a voice agent's effect on repeat calls.</span></li>
+      <li><strong>89<small>%</small></strong><span>of model pairs we ranked in the same order as their real-world forecasting.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Leaderboard. -->
+<section class="band" id="leaderboard" aria-labelledby="leaderboard-title">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <h2 id="leaderboard-title">Seven models cut costs by <span class="nw">5–7%</span>. Four forecast clearly best.</h2>
+      </div>
+    </header>
+    <div class="lb-controls" role="group" aria-label="Sort the leaderboard">
+      <span>Sort by</span>
+      <button type="button" data-sort="save" aria-pressed="true">Cost saved</button>
+      <button type="button" data-sort="acc" aria-pressed="false">Forecast accuracy</button>
+      <button type="button" data-sort="cost" aria-pressed="false">Cost per run</button>
+    </div>
+    <div class="lb-wrap">
+      <table class="leaderboard">
+        <caption class="vh">RehearsalBench round 3 leaderboard</caption>
+        <thead><tr><th scope="col" class="lb-rank">#</th><th scope="col">Model</th><th scope="col">Cost saved</th><th scope="col">Forecast accuracy</th><th scope="col" class="lb-cost">Cost per run</th></tr></thead>
+        <tbody class="lb-ranked">
+{{leaderboard:ranked}}
+        </tbody>
+        <tbody class="lb-other">
+{{leaderboard:other}}
+        </tbody>
+      </table>
+    </div>
+    <p class="fineprint">Simulated outcomes from 14 contact centres, two attempts each. Forecast accuracy is the error saved against always predicting no effect. Lines show 95% ranges. <a href="/research/rehearsalbench/leaderboard.csv" download>CSV</a></p>
+  </div>
+</section>
+
+<!-- Why it matters. -->
+<section class="band why" id="why" aria-labelledby="why-title">
+  <div class="wrap narrow">
+    <h2 id="why-title">Why does this matter?</h2>
+    <p class="lede">In July 2025, the Commonwealth Bank of Australia said it would replace 45 customer-service roles with an AI voice bot. The union said call volumes were rising. In August the bank reversed the decision and admitted the roles <a href="https://ia.acs.org.au/article/2025/cba-reverses-ai-driven-job-cuts--admits--error-.html">“were not redundant.”</a></p>
+    <p>The plan rested on a forecast of what the bot would do to calls, and the forecast was wrong. AI models now make forecasts like that, and propose the plans too. We built RehearsalBench to test whether they get them right.</p>
+  </div>
+</section>
+
+<!-- How it works: the particle story. -->
+<div class="particle-story cinema-layout how-story" id="how">
+  <div class="particle-stage" aria-hidden="true"><canvas class="world-canvas"></canvas><canvas class="world-gl"></canvas></div>
+  <div class="story-rail"><nav class="scene-nav" aria-label="How it works">
+    <a href="#one-future"><i aria-hidden="true"></i><span>One future</span></a>
+    <a href="#rewind"><i aria-hidden="true"></i><span>Rewind</span></a>
+    <a href="#evidence"><i aria-hidden="true"></i><span>Evidence</span></a>
+    <a href="#plan"><i aria-hidden="true"></i><span>Plan</span></a>
+    <a href="#futures"><i aria-hidden="true"></i><span>Futures</span></a>
+    <a href="#score"><i aria-hidden="true"></i><span>Score</span></a>
+    <div class="motion-control"><button type="button" class="motion-toggle" aria-pressed="false" hidden><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg><span>Pause motion</span></button></div>
+  </nav></div>
+  <div class="story-scenes">
+    <section class="scene is-low" id="one-future" data-scene="one" aria-labelledby="s-one">
+      <div class="scene-copy">
+        <h2 id="s-one">A company only sees what happened.</h2>
+        <p>When a company makes a change, it sees one result. It never finds out what the other options would have done, so a lucky call can look like a good one.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/one.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="rewind" data-scene="rewind" aria-labelledby="s-rewind">
+      <div class="scene-copy">
+        <h2 id="s-rewind">So we built contact centres you can rewind.</h2>
+        <p>Fourteen simulated bank contact centres, built from real call records. We tested the engine on a second bank it had never seen.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/rewind.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="evidence" data-scene="evidence" aria-labelledby="s-evidence">
+      <div class="scene-copy">
+        <h2 id="s-evidence">The AI sees what a manager sees.</h2>
+        <p>It reads the same reports a manager would, gaps included. The simulator's rules stay hidden.</p>
+        <p>It can ask for more data, but the bill comes out of the plan's value.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/evidence.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="plan" data-scene="plan" aria-labelledby="s-plan">
+      <div class="scene-copy">
+        <h2 id="s-plan">It makes a plan and a prediction.</h2>
+        <p>It can reshape staffing, bring in AI tools or leave things alone. Each prediction comes with a range, and it's locked before anything runs.</p>
+        <p>Then every model predicts the same set of changes, so we can compare them head to head.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/plan.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="futures" data-scene="futures" aria-labelledby="s-futures">
+      <div class="scene-copy">
+        <h2 id="s-futures">We let the future happen.</h2>
+        <p>Each plan runs 200 times in three versions of the bank: as described, worse and better. Every model gets the same luck.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/futures.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="score" data-scene="score" aria-labelledby="s-score">
+      <div class="scene-copy">
+        <h2 id="s-score">Then we compare.</h2>
+        <p>A plan scores what it saves, at the bank's own valuations. Break the service floor and it scores zero.</p>
+        <p>A prediction scores on how close it came, and whether its range held the truth.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/score.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+</div>
+
+<!-- Findings. -->
+<article class="findings">
+
+  <section class="band" id="direction" aria-labelledby="direction-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="direction-title">Every model made the same mistake.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>The models made the same sizing errors. They expected a voice agent to raise repeat calls by about half a percentage point. It raised them by a tenth of one. Everyone overrated agent assist and callbacks too.</p>
+        </div>
+        <figure class="figure missed">
+          <div class="mc-legend" aria-hidden="true"><span><i class="key-band"></i>model forecasts</span><span><i class="key-truth"></i>what happened</span></div>
+          <div class="mc" role="list">
+{{chart:missed}}
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="example" aria-labelledby="example-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="example-title">Finance wanted a 10% cut. The model said no.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>On one bank, GPT-6 Astra read the hourly reports and found nobody answering weekday calls from 9&nbsp;pm to midnight. 15,957 calls got an after-hours message.</p>
+          <p>It moved staff into those evenings and the morning peaks, and turned down the payroll cut in writing.</p>
+          <p>The plan was worth $156,683 more than doing nothing.</p>
+        </div>
+        <div class="example">
+          <blockquote class="card card-dark">
+            <p>“The largest avoidable loss exposure is missing coverage, not long calls.”</p>
+          </blockquote>
+          <table class="ex-table">
+            <thead><tr><th scope="col"></th><th scope="col">Predicted</th><th scope="col">Happened</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Callers who hung up</th><td>11.0% <span>9.8–12.4</span></td><td>10.6%</td></tr>
+              <tr><th scope="row">Average wait</th><td>40 s <span>33–48</span></td><td>38 s</td></tr>
+              <tr><th scope="row">Staff cost</th><td>$306,185</td><td>$305,970</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="cost" aria-labelledby="cost-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="cost-title">Spending more buys little.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>GPT-6.1 Sol nearly matched Astra's savings at a sixth of the price. DeepSeek V4.1 Flash saved 5.3% for 46 cents a run.</p>
+          <p>Price doesn't explain the bottom either. Gemini 3.8 Flash costs about what Sol does, but changed nothing on 75% of its runs and saved nothing. GPT-6 Luna made 5 changes per plan to Astra's 46, and left the bank worse off 43% of the time.</p>
+        </div>
+        <figure class="figure scatter">
+          <div class="sc-axes"><span class="sc-ylabel">Cost saved</span>
+{{chart:cost}}
+          <span class="sc-xlabel">Cost per run</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="behaviour" aria-labelledby="behaviour-title">
+    <div class="wrap">
+      <h2 id="behaviour-title" class="vh">More findings</h2>
+      <div class="cards">
+        <section class="card card-dark" aria-labelledby="c-hold">
+          <h3 id="c-hold">Nobody held off.</h3>
+          <p>On two banks, nothing on offer reliably beat doing nothing. No model ever recommended holding off.</p>
+        </section>
+        <section class="card card-light" aria-labelledby="c-style">
+          <h3 id="c-style">Each one manages differently.</h3>
+          <p>Astra never used a voice agent. Mistral Small used one in 86% of its plans. Astra and Sol bought extra data about three times a run. Haiku hardly ever did, and its plans delivered less than it promised.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="band real" id="real-world" aria-labelledby="real-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="real-title">The models that did well here did well in reality.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>A simulation is only worth anything if it tells you something about the real world, so we tested that too. Twelve models forecast 33 real changes where we knew the outcome, from software teams adopting AI coding tools to government contact centres.</p>
+          <p>The same five models lead both rankings, and the same three trail. The three in green joined after we froze the test, and still landed in the right order.</p>
+        </div>
+        <figure class="figure ranks">
+{{chart:ranks}}
+        </figure>
+      </div>
+
+      <div class="cols h2h-block">
+        <div class="prose">
+          <h3>Better than price or popularity.</h3>
+          <p>Ranking models by price puts 67% of pairs in the right order. LMArena gets 60%.</p>
+        </div>
+        <figure class="figure h2h">
+          <div class="hh">
+{{chart:h2h}}
+          </div>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="band" id="next" aria-labelledby="next-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="next-title">What's next.</h2>
+      </header>
+      <dl class="limits">
+        <div class="is-cta"><dt>Open submissions.</dt><dd>Coming soon. Want your model or agent on the next leaderboard? <a href="mailto:founders@afterflow.dev?subject=RehearsalBench%20submissions">Get notified</a>.</dd></div>
+        <div><dt>New industries.</dt><dd>Contact centres were the first world. More kinds of operation come next.</dd></div>
+        <div><dt>Savings checked against reality.</dt><dd>The real-world test covers forecasts. Savings come next.</dd></div>
+        <div><dt>Measured AI effects.</dt><dd>We're replacing the simulator's assumed AI effects with measured ones, and testing how much of the real-world match comes from models setting sensible ranges.</dd></div>
+        <div><dt>A bigger real-world test.</dt><dd>33 real events is a start. A deeper test is built and ready to run.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band closing" aria-labelledby="closing-title">
+    <div class="wrap narrow">
+      <h2 id="closing-title">A real company only gets one future. A simulation can run all of them.</h2>
+      <p class="hero-actions">
+        <a class="button" href="{{link:paper}}">Read the paper <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="quiet-link" href="{{link:repo}}">Results on GitHub <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </p>
+    </div>
+  </section>
+
+</article>
+</main>

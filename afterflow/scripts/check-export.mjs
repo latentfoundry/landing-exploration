@@ -12,12 +12,14 @@ const localOnlyNames = new Set([
   "private", "drafts",
 ]);
 
-// Only the visible benchmark experience, fallbacks and sharing image may ship.
-const benchmarkAssets = new Set([
-  "story.js", "field-gl.js", "particle-shapes.js", "opengraph-image.png",
-  "vendor/anime.esm.min.js", "vendor/anime-LICENSE.txt",
-  ...Array.from({ length: 8 }, (_, index) => `scenes/scene-${index}.svg`),
-]);
+// The RehearsalBench page ships its scripts, fallback diagrams, leaderboard CSV and sharing image;
+// the retired v0.1 benchmark ships nothing.
+const benchPath = "/research/rehearsalbench/";
+const benchAssets = [
+  "opengraph-image.png", "leaderboard.csv",
+  "js/page.js", "js/story.js", "js/shapes.js", "js/field-gl.js",
+  ...["hero", "one", "rewind", "evidence", "plan", "futures", "score"].map((scene) => `scenes/${scene}.svg`),
+];
 
 function checkPublishedFiles(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -27,22 +29,15 @@ function checkPublishedFiles(directory) {
       !localOnlyNames.has(entry.name) && !entry.name.startsWith(".env") && !entry.name.endsWith(".provenance.json"),
       `Local-only file or folder must not be published: ${publishedPath}`,
     );
-    if (publishedPath.startsWith("interventionbench/")) {
-      const asset = publishedPath.slice("interventionbench/".length);
-      assert(entry.isDirectory() ? ["scenes", "vendor"].includes(asset) : benchmarkAssets.has(asset),
-        `Unreleased benchmark material must not be published: ${publishedPath}`);
-    }
-    if (entry.isDirectory() && publishedPath.startsWith("research/interventionbench-v0-1/")) {
-      assert.fail(`Unreleased benchmark route must not be published: ${publishedPath}`);
-    }
+    assert(!/interventionbench/i.test(publishedPath), `Retired benchmark material must not be published: ${publishedPath}`);
     assert(!entry.isSymbolicLink(), `Export must not contain symlinks: ${relative(root, path)}`);
     if (entry.isDirectory()) checkPublishedFiles(path);
   }
 }
 
 checkPublishedFiles(root);
-for (const asset of benchmarkAssets) {
-  assert(existsSync(resolve(root, "interventionbench", asset)), `Required benchmark page asset is missing: ${asset}`);
+for (const asset of benchAssets) {
+  assert(existsSync(resolve(root, `.${benchPath}`, asset)), `Required RehearsalBench asset is missing: ${asset}`);
 }
 const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() || "https://afterflow.dev";
 const origin = new URL(/^https?:\/\//i.test(configuredOrigin) ? configuredOrigin : `https://${configuredOrigin}`);
@@ -51,7 +46,7 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[
 const pages = new Map();
 for (const [published, source] of [
   ["opengraph-image.png", "app/opengraph-image.png"],
-  ["interventionbench/opengraph-image.png", "public/interventionbench/opengraph-image.png"],
+  ["research/rehearsalbench/opengraph-image.png", "public/research/rehearsalbench/opengraph-image.png"],
 ]) {
   const socialImage = readFileSync(resolve(root, published));
   assert.equal(socialImage.readUInt32BE(16), 1200, `${published}: must be 1200px wide`);
@@ -81,8 +76,8 @@ for (const address of urls) {
   assert.equal(metadata.find((tag) => tag.property === "og:url")?.content, address);
   const ogImage = new URL(metadata.find((tag) => tag.property === "og:image")?.content);
   const twitterImage = new URL(metadata.find((tag) => tag.name === "twitter:image")?.content);
-  const expectedImage = url.pathname.startsWith("/research/interventionbench-v0-1/")
-    ? "/interventionbench/opengraph-image.png"
+  const expectedImage = url.pathname.startsWith(benchPath)
+    ? `${benchPath}opengraph-image.png`
     : "/opengraph-image.png";
   for (const image of [ogImage, twitterImage]) {
     assert.equal(image.origin, origin.origin, `${url.pathname}: social image must use the public origin`);
@@ -126,11 +121,15 @@ for (const [pathname, html] of pages) {
 
 const robots = readFileSync(resolve(root, "robots.txt"), "utf8");
 assert(!existsSync(resolve(root, "insights")), "Retired insights routes must not be published");
-assert(pages.get("/research/")?.includes("Introducing InterventionBench v0.1"), "Research must list the benchmark announcement");
+assert(pages.get("/research/")?.includes("Introducing RehearsalBench"), "Research must list RehearsalBench");
+assert(!/InterventionBench/i.test(pages.get("/research/")), "Research must not list the retired benchmark");
 assert(!pages.get("/research/")?.includes("Research behind our approach"), "Retired research section must not be published");
-const benchmark = pages.get("/research/interventionbench-v0-1/");
-assert(benchmark?.includes('datetime="2026-10-14"'), "Benchmark announcement must show its publication date");
-assert(benchmark?.includes('id="world-canvas"') && benchmark.includes('id="results"'), "Benchmark story and results must be preserved");
+const bench = pages.get(benchPath) ?? "";
+assert(bench.includes('class="rehearsal-bench"') && /datetime="2026-11/.test(bench), "RehearsalBench page must render with its date");
+assert(["leaderboard", "how", "real-world", "next"].every((id) => bench.includes(`id="${id}"`)), "RehearsalBench leaderboard, story, real-world test and next steps must be present");
+assert(bench.includes('class="world-canvas"') && bench.includes(`href="${benchPath}leaderboard.csv"`), "RehearsalBench needs its particle story and CSV download");
+assert(!/InterventionBench|\bIB\b|Stage [AC]\b/.test(bench.replace(/<[^>]+>/g, " ")), "RehearsalBench must not use retired names");
+assert(!existsSync(resolve(root, "research/interventionbench-v0-1")), "Retired benchmark route must not be published");
 const notFound = readFileSync(resolve(root, "404.html"), "utf8");
 assert(notFound.includes("Page not found.") && notFound.includes('class="site-header"') && notFound.includes('class="site-footer"'), "404 must use the shared site layout");
 assert(notFound.includes("Back to home"), "404 needs a recovery link");

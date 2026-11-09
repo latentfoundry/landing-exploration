@@ -1,17 +1,19 @@
 export const researchDescription =
   "Better decisions require models that understand how businesses work and learn from what happens. We study world modelling, operational simulation, and learning from outcomes.";
 
-export const interventionBench = {
-  title: "Introducing InterventionBench v0.1",
-  href: "/research/interventionbench-v0-1/",
-  description: "Can AI see what comes next? Testing decisions and forecasts across three simulated business operations.",
-  published: "14 October 2026",
-  publishedIso: "2026-10-14",
+export const rehearsalBench = {
+  title: "Introducing RehearsalBench",
+  href: "/research/rehearsalbench/",
+  repoHref: "https://github.com/afterflowinc/rehearsalbench",
+  description:
+    "Can AI run your company? Ten AI models ran simulated bank contact centres built from real call records. They got the direction of each change right and the size wrong.",
+  published: "November 2026",
+  publishedIso: "2026-11-03",
 } as const;
 
-export const interventionBenchSocialImage = {
-  url: "/interventionbench/opengraph-image.png?v=1",
+export const rehearsalBenchSocialImage = {
+  url: "/research/rehearsalbench/opengraph-image.png?v=1",
   width: 1200,
   height: 630,
-  alt: "Afterflow — InterventionBench v0.1. Can AI see what comes next? Branching particle paths represent simulated futures.",
+  alt: "Afterflow — RehearsalBench. Can AI run your company? Particle paths fan out into many simulated futures.",
 } as const;

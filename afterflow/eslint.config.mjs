@@ -9,8 +9,8 @@ const eslintConfig = defineConfig([
   globalIgnores([
     "data/**",
     "private/**",
-    // Imported publication code and vendored animation library retain their source style.
-    "public/interventionbench/**",
+    // The RehearsalBench page scripts are plain browser modules served as-is.
+    "public/research/rehearsalbench/js/**",
     ".impeccable/review/**",
     ".impeccable/references/**",
     // Default ignores of eslint-config-next:
