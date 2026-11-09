@@ -1,20 +1,22 @@
 import assert from "node:assert/strict";
-import { readFile, writeFile, rename } from "node:fs/promises";
+import { mkdir, readFile, writeFile, rename } from "node:fs/promises";
+import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 // Re-export the social card with the actual fonts and current site tokens.
 // Requires a local Chrome with --remote-debugging-port=9257 (or SOCIAL_BROWSER_URL).
+// Pass card names to render only those, e.g. `pnpm render:social rehearsalbench`.
 const project = new URL("../", import.meta.url);
 const css = await readFile(new URL("app/globals.css", project), "utf8");
 const tokens = css.match(/:root\s*\{([^}]+)\}/)?.[1];
 assert(tokens, "Site typography tokens are missing");
 const dataUrl = async (path, type) => `data:${type};base64,${(await readFile(new URL(path, project))).toString("base64")}`;
-const [upright, italic, regular, mark, particles] = await Promise.all([
+const [upright, italic, regular, mark, futures] = await Promise.all([
   dataUrl("assets/fonts/TestTiemposHeadline-Medium-BF66457a509b4ec.otf", "font/otf"),
   dataUrl("assets/fonts/TestTiemposHeadline-MediumItalic-BF66457a50b4260.otf", "font/otf"),
   dataUrl("assets/fonts/TestTiemposHeadline-Regular-BF66457a508e31a.otf", "font/otf"),
   dataUrl("public/brand-mark.svg", "image/svg+xml"),
-  dataUrl("public/interventionbench/scenes/scene-6.svg", "image/svg+xml"),
+  dataUrl("public/research/rehearsalbench/scenes/futures.svg", "image/svg+xml"),
 ]);
 const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>
 @font-face { font-family: Tiempos; src: url("${upright}") format("opentype"); font-weight: 500; font-style: normal; }
@@ -38,11 +40,13 @@ const benchmarkHtml = html
     .benchmark-title { position: absolute; left: 64px; bottom: 96px; font-size: 72px; line-height: 1.06; font-weight: 400; }
     .subtitle { position: absolute; left: 64px; bottom: 48px; margin: 0; font: 400 28px/1.4 Tiempos; color: var(--body); }
   </style>`)
-  .replace(/<main>[\s\S]*?<\/main>/, `<main><img class="particle-art" src="${particles}" alt=""><h1 class="benchmark-title"><span class="line">InterventionBench v0.1</span></h1><p class="subtitle">Can AI see what comes next?</p></main>`);
+  .replace(/<main>[\s\S]*?<\/main>/, `<main><img class="particle-art" src="${futures}" alt=""><h1 class="benchmark-title"><span class="line">RehearsalBench</span></h1><p class="subtitle">Can AI run your company?</p></main>`);
+const only = process.argv.slice(2);
 const cards = [
-  { html, path: "app/opengraph-image.png" },
-  { html: benchmarkHtml, path: "public/interventionbench/opengraph-image.png" },
-];
+  { name: "home", html, path: "app/opengraph-image.png" },
+  { name: "rehearsalbench", html: benchmarkHtml, path: "public/research/rehearsalbench/opengraph-image.png" },
+].filter((card) => !only.length || only.includes(card.name));
+assert(cards.length, `Unknown social card: ${only.join(", ")}`);
 
 const browserURL = process.env.SOCIAL_BROWSER_URL || "http://127.0.0.1:9257";
 const tabResponse = await fetch(`${browserURL}/json/new?about:blank`, { method: "PUT" });
@@ -101,6 +105,7 @@ try {
     assert.equal(png.readUInt32BE(16), 1200);
     assert.equal(png.readUInt32BE(20), 630);
     const destination = fileURLToPath(new URL(card.path, project));
+    await mkdir(dirname(destination), { recursive: true });
     await writeFile(`${destination}.tmp`, png);
     await rename(`${destination}.tmp`, destination);
     console.log(JSON.stringify({ file: destination, width: 1200, height: 630, bytes: png.length, ...check }, null, 2));

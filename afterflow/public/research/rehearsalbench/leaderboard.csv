@@ -1,0 +1,13 @@
+rank,model,developer,route,valid_runs_pct,cost_saved_pct,cost_saved_pct_lo95,cost_saved_pct_hi95,mean_value_vs_no_change_usd,robust_value_vs_no_change_usd,forecast_score,forecast_score_lo95,forecast_score_hi95,forecast_accuracy_pct,forecast_accuracy_pct_lo95,forecast_accuracy_pct_hi95,api_cost_per_run_usd
+1,GPT-6 Astra,OpenAI,native,100,6.83,3.61,10.52,48558,46365,2.394,2.139,2.632,76.5,74.2,79.0,14.00
+2,Claude Sonnet 5.5,Anthropic,OpenRouter,100,6.7,3.41,10.46,47738,46155,2.625,2.373,2.857,74.2,72.0,76.7,6.76
+3,GPT-6.1 Sol,OpenAI,native,100,6.53,3.49,10.02,46470,45215,2.684,2.355,3.05,73.7,70.1,76.9,2.47
+4,Claude Fable 5.1,Anthropic,"mixed (OpenRouter on 5 banks, native on 9)",96,6.3,3.21,9.84,45045,43220,2.943,2.6,3.291,71.1,67.7,74.5,14.37
+5,Claude Haiku 5.5,Anthropic,native,100,5.69,2.3,9.57,41891,39876,3.855,3.187,4.634,62.2,54.5,68.7,1.56
+6,Qwen3.8 Flash,Alibaba,OpenRouter,79,5.32,2.09,9.07,39034,35501,4.546,3.762,5.327,55.4,47.7,63.1,0.58
+7,DeepSeek V4.1 Flash,DeepSeek,OpenRouter,96,5.27,2.14,8.79,38140,35131,3.898,3.33,4.554,61.7,55.3,67.3,0.46
+8,GPT-6 Luna,OpenAI,OpenRouter,100,0.71,-0.11,2.49,5655,3901,4.183,3.577,4.766,58.9,53.2,64.9,0.18
+9,Gemini 3.8 Flash,Google,native,100,0.02,-0.04,0.09,166,-175,4.814,4.054,5.651,52.8,44.5,60.2,2.49
+,Mistral Small 2603 (partial),Mistral,OpenRouter,11,-1.96,-5.48,1.4,-7882,-12516,26.141,10.304,57.556,-156.6,-464.9,-1.1,0.06
+,Always do nothing (baseline),,,,0.0,,,0,0,,,,,,,
+,Always predict no effect (baseline),,,,,,,,,10.189,,,0.0,,,

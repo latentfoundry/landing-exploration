@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { interventionBench, researchDescription } from "@/content/research";
+import { rehearsalBench, researchDescription } from "@/content/research";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site";
 import "./research.css";
 
@@ -30,7 +30,7 @@ export default function ResearchPage() {
     publisher: { "@id": absoluteUrl("/#organization") },
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: [{ "@type": "ListItem", position: 1, name: interventionBench.title, url: absoluteUrl(interventionBench.href) }],
+      itemListElement: [{ "@type": "ListItem", position: 1, name: rehearsalBench.title, url: absoluteUrl(rehearsalBench.href) }],
     },
   };
   return (
@@ -45,16 +45,16 @@ export default function ResearchPage() {
         </header>
         <div className="research-features">
           {/* The shared scroll provider resets this visit; Next's fragment scroll can target the article footer. */}
-          <Link className="research-feature" href={interventionBench.href} scroll={false} aria-labelledby="interventionbench-title">
+          <Link className="research-feature" href={rehearsalBench.href} scroll={false} aria-labelledby="rehearsalbench-title">
             <div className="research-feature__image">
-              <Image src="/interventionbench/scenes/scene-6.svg" alt="" width={900} height={620} priority />
+              <Image src="/research/rehearsalbench/scenes/futures.svg" alt="" width={900} height={620} priority />
               <span className="research-feature__overlay" aria-hidden="true">View</span>
             </div>
             <div className="research-feature__heading">
-              <h2 id="interventionbench-title">{interventionBench.title}</h2>
+              <h2 id="rehearsalbench-title">{rehearsalBench.title}</h2>
             </div>
-            <p>{interventionBench.description}</p>
-            <time dateTime={interventionBench.publishedIso}>{interventionBench.published}</time>
+            <p>{rehearsalBench.description}</p>
+            <time dateTime={rehearsalBench.publishedIso}>{rehearsalBench.published}</time>
           </Link>
         </div>
       </main>

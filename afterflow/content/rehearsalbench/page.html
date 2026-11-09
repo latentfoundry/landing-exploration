@@ -1,0 +1,328 @@
+<main id="main" class="rb-main">
+
+<!-- Hero: one particle scene behind the title. -->
+<div class="particle-story cinema-layout hero-story" id="top">
+  <div class="particle-stage" aria-hidden="true"><canvas class="world-canvas"></canvas><canvas class="world-gl"></canvas></div>
+  <div class="story-scenes">
+    <section class="scene is-hero" id="intro" data-scene="hero" aria-labelledby="hero-question">
+      <div class="scene-copy">
+        <h1 class="benchmark-announcement">Introducing RehearsalBench</h1>
+        <p class="benchmark-date"><time datetime="2026-11">November 2026</time></p>
+        <h2 id="hero-question" class="benchmark-question">Can AI run your company?</h2>
+        <p class="hero-copy">We gave ten AI models a simulated bank contact centre, built from real call records. Each one made a plan and predicted what it would do. We ran every plan 600&nbsp;times.</p>
+        <p class="hero-actions">
+          <a class="button" href="https://github.com/afterflowinc/rehearsalbench">Read the paper <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          <a class="story-start" href="#findings">See the results <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v13m-5-5 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        </p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/hero.svg" alt="" width="900" height="620" loading="eager">
+    </section>
+  </div>
+</div>
+
+<!-- Summary: the four numbers. -->
+<section class="band summary" id="findings" aria-labelledby="findings-title">
+  <div class="wrap">
+    <header class="section-head">
+      <h2 id="findings-title">Models get the direction right and the size wrong.</h2>
+    </header>
+    <ul class="stats">
+      <li><strong>6.8<small>%</small></strong><span>simulated running cost cut by the best model, GPT-6 Astra.</span></li>
+      <li><strong>77<small>%</small></strong><span>less forecast error than always predicting no effect.</span></li>
+      <li><strong>5<small>×</small></strong><span>roughly how much every model overstated a voice agent's effect on repeat calls.</span></li>
+      <li><strong>89<small>%</small></strong><span>of model pairs we ranked in the same order as their real-world forecasting.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Leaderboard. -->
+<section class="band" id="leaderboard" aria-labelledby="leaderboard-title">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <h2 id="leaderboard-title">Seven models cut costs by <span class="nw">5–7%</span>. Four forecast clearly best.</h2>
+      </div>
+    </header>
+    <div class="lb-controls" role="group" aria-label="Sort the leaderboard">
+      <span>Sort by</span>
+      <button type="button" data-sort="save" aria-pressed="true">Cost saved</button>
+      <button type="button" data-sort="acc" aria-pressed="false">Forecast accuracy</button>
+      <button type="button" data-sort="cost" aria-pressed="false">Cost per run</button>
+    </div>
+    <div class="lb-wrap">
+      <table class="leaderboard">
+        <caption class="vh">RehearsalBench round 3 leaderboard</caption>
+        <thead><tr><th scope="col" class="lb-rank">#</th><th scope="col">Model</th><th scope="col">Cost saved</th><th scope="col">Forecast accuracy</th><th scope="col" class="lb-cost">Cost per run</th></tr></thead>
+        <tbody class="lb-ranked">
+<tr style="--i:0" data-rank="1" data-save="6.83" data-acc="76.5" data-cost="14.00"><td class="lb-rank">1</td><th scope="row" class="lb-model"><span class="m">GPT-6 Astra</span><span class="d">OpenAI</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:56.92%"></span><span class="lb-ci" style="left:38.42%;width:57.58%"></span></span><span class="lb-num">6.8%</span><span class="lb-range">3.6–10.5</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:76.50%"></span><span class="lb-ci" style="left:74.20%;width:4.80%"></span></span><span class="lb-num">77%</span><span class="lb-range">74–79</span></div></td><td class="lb-cost">$14.00</td></tr>
+<tr style="--i:1" data-rank="2" data-save="6.7" data-acc="74.2" data-cost="6.76"><td class="lb-rank">2</td><th scope="row" class="lb-model"><span class="m">Claude Sonnet 5.5</span><span class="d">Anthropic</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:55.84%"></span><span class="lb-ci" style="left:36.75%;width:58.75%"></span></span><span class="lb-num">6.7%</span><span class="lb-range">3.4–10.5</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:74.20%"></span><span class="lb-ci" style="left:72.00%;width:4.70%"></span></span><span class="lb-num">74%</span><span class="lb-range">72–77</span></div></td><td class="lb-cost">$6.76</td></tr>
+<tr style="--i:2" data-rank="3" data-save="6.53" data-acc="73.7" data-cost="2.47"><td class="lb-rank">3</td><th scope="row" class="lb-model"><span class="m">GPT-6.1 Sol</span><span class="d">OpenAI</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:54.42%"></span><span class="lb-ci" style="left:37.42%;width:54.41%"></span></span><span class="lb-num">6.5%</span><span class="lb-range">3.5–10.0</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:73.70%"></span><span class="lb-ci" style="left:70.10%;width:6.80%"></span></span><span class="lb-num">74%</span><span class="lb-range">70–77</span></div></td><td class="lb-cost">$2.47</td></tr>
+<tr style="--i:3" data-rank="4" data-save="6.3" data-acc="71.1" data-cost="14.37"><td class="lb-rank">4</td><th scope="row" class="lb-model"><span class="m">Claude Fable 5.1</span><span class="d">Anthropic</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:52.50%"></span><span class="lb-ci" style="left:35.08%;width:55.25%"></span></span><span class="lb-num">6.3%</span><span class="lb-range">3.2–9.8</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:71.10%"></span><span class="lb-ci" style="left:67.70%;width:6.80%"></span></span><span class="lb-num">71%</span><span class="lb-range">68–75</span></div></td><td class="lb-cost">$14.37</td></tr>
+<tr style="--i:4" data-rank="5" data-save="5.69" data-acc="62.2" data-cost="1.56"><td class="lb-rank">5</td><th scope="row" class="lb-model"><span class="m">Claude Haiku 5.5</span><span class="d">Anthropic</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:47.42%"></span><span class="lb-ci" style="left:27.50%;width:60.58%"></span></span><span class="lb-num">5.7%</span><span class="lb-range">2.3–9.6</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:62.20%"></span><span class="lb-ci" style="left:54.50%;width:14.20%"></span></span><span class="lb-num">62%</span><span class="lb-range">55–69</span></div></td><td class="lb-cost">$1.56</td></tr>
+<tr style="--i:5" data-rank="6" data-save="5.32" data-acc="55.4" data-cost="0.58"><td class="lb-rank">6</td><th scope="row" class="lb-model"><span class="m">Qwen3.8 Flash</span><span class="d">Alibaba</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:44.34%"></span><span class="lb-ci" style="left:25.75%;width:58.17%"></span></span><span class="lb-num">5.3%</span><span class="lb-range">2.1–9.1</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:55.40%"></span><span class="lb-ci" style="left:47.70%;width:15.40%"></span></span><span class="lb-num">55%</span><span class="lb-range">48–63</span></div></td><td class="lb-cost">$0.58</td></tr>
+<tr style="--i:6" data-rank="7" data-save="5.27" data-acc="61.7" data-cost="0.46"><td class="lb-rank">7</td><th scope="row" class="lb-model"><span class="m">DeepSeek V4.1 Flash</span><span class="d">DeepSeek</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:43.92%"></span><span class="lb-ci" style="left:26.17%;width:55.41%"></span></span><span class="lb-num">5.3%</span><span class="lb-range">2.1–8.8</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:61.70%"></span><span class="lb-ci" style="left:55.30%;width:12.00%"></span></span><span class="lb-num">62%</span><span class="lb-range">55–67</span></div></td><td class="lb-cost">$0.46</td></tr>
+<tr style="--i:7" data-rank="8" data-save="0.71" data-acc="58.9" data-cost="0.18"><td class="lb-rank">8</td><th scope="row" class="lb-model"><span class="m">GPT-6 Luna</span><span class="d">OpenAI</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:5.92%"></span><span class="lb-ci" style="left:7.42%;width:21.66%"></span></span><span class="lb-num">0.7%</span><span class="lb-range">−0.1–2.5</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:58.90%"></span><span class="lb-ci" style="left:53.20%;width:11.70%"></span></span><span class="lb-num">59%</span><span class="lb-range">53–65</span></div></td><td class="lb-cost">$0.18</td></tr>
+<tr style="--i:8" data-rank="9" data-save="0.02" data-acc="52.8" data-cost="2.49"><td class="lb-rank">9</td><th scope="row" class="lb-model"><span class="m">Gemini 3.8 Flash</span><span class="d">Google</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-save" aria-hidden="true" style="--zero:8.33%"><span class="lb-bar" style="left:8.33%;width:0.17%"></span><span class="lb-ci" style="left:8.00%;width:1.08%"></span></span><span class="lb-num">0.0%</span><span class="lb-range">−0.0–0.1</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-track lb-acc" aria-hidden="true" style="--zero:0.00%"><span class="lb-bar" style="left:0%;width:52.80%"></span><span class="lb-ci" style="left:44.50%;width:15.70%"></span></span><span class="lb-num">53%</span><span class="lb-range">45–60</span></div></td><td class="lb-cost">$2.49</td></tr>
+        </tbody>
+        <tbody class="lb-other">
+<tr class="is-partial"><td class="lb-rank">—</td><th scope="row" class="lb-model"><span class="m">Mistral Small 2603</span><span class="d">Mistral · partial, 11% of runs valid</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-num">−2.0%</span><span class="lb-range">−5.5–1.4</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-num lb-text">worse than no effect</span></div></td><td class="lb-cost">$0.06</td></tr>
+<tr class="is-baseline"><td class="lb-rank"></td><th scope="row" class="lb-model"><span class="m">Always do nothing</span><span class="d">Baseline</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-num">0.0%</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-num">—</span></div></td><td class="lb-cost"></td></tr>
+<tr class="is-baseline"><td class="lb-rank"></td><th scope="row" class="lb-model"><span class="m">Always predict no effect</span><span class="d">Baseline</span></th><td class="lb-cell"><div class="lb-g"><span class="lb-num">—</span></div></td><td class="lb-cell"><div class="lb-g"><span class="lb-num">0%</span></div></td><td class="lb-cost"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fineprint">Simulated outcomes from 14 contact centres, two attempts each. Forecast accuracy is the error saved against always predicting no effect. Lines show 95% ranges. <a href="/research/rehearsalbench/leaderboard.csv" download>CSV</a></p>
+  </div>
+</section>
+
+<!-- Why it matters. -->
+<section class="band why" id="why" aria-labelledby="why-title">
+  <div class="wrap narrow">
+    <h2 id="why-title">Why does this matter?</h2>
+    <p class="lede">In July 2025, the Commonwealth Bank of Australia said it would replace 45 customer-service roles with an AI voice bot. The union said call volumes were rising. In August the bank reversed the decision and admitted the roles <a href="https://ia.acs.org.au/article/2025/cba-reverses-ai-driven-job-cuts--admits--error-.html">“were not redundant.”</a></p>
+    <p>The plan rested on a forecast of what the bot would do to calls, and the forecast was wrong. AI models now make forecasts like that, and propose the plans too. We built RehearsalBench to test whether they get them right.</p>
+  </div>
+</section>
+
+<!-- How it works: the particle story. -->
+<div class="particle-story cinema-layout how-story" id="how">
+  <div class="particle-stage" aria-hidden="true"><canvas class="world-canvas"></canvas><canvas class="world-gl"></canvas></div>
+  <div class="story-rail"><nav class="scene-nav" aria-label="How it works">
+    <a href="#one-future"><i aria-hidden="true"></i><span>One future</span></a>
+    <a href="#rewind"><i aria-hidden="true"></i><span>Rewind</span></a>
+    <a href="#evidence"><i aria-hidden="true"></i><span>Evidence</span></a>
+    <a href="#plan"><i aria-hidden="true"></i><span>Plan</span></a>
+    <a href="#futures"><i aria-hidden="true"></i><span>Futures</span></a>
+    <a href="#score"><i aria-hidden="true"></i><span>Score</span></a>
+    <div class="motion-control"><button type="button" class="motion-toggle" aria-pressed="false" hidden><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg><span>Pause motion</span></button></div>
+  </nav></div>
+  <div class="story-scenes">
+    <section class="scene is-low" id="one-future" data-scene="one" aria-labelledby="s-one">
+      <div class="scene-copy">
+        <h2 id="s-one">A company only sees what happened.</h2>
+        <p>When a company makes a change, it sees one result. It never finds out what the other options would have done, so a lucky call can look like a good one.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/one.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="rewind" data-scene="rewind" aria-labelledby="s-rewind">
+      <div class="scene-copy">
+        <h2 id="s-rewind">So we built contact centres you can rewind.</h2>
+        <p>Fourteen simulated bank contact centres, built from real call records. We tested the engine on a second bank it had never seen.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/rewind.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="evidence" data-scene="evidence" aria-labelledby="s-evidence">
+      <div class="scene-copy">
+        <h2 id="s-evidence">The AI sees what a manager sees.</h2>
+        <p>It reads the same reports a manager would, gaps included. The simulator's rules stay hidden.</p>
+        <p>It can ask for more data, but the bill comes out of the plan's value.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/evidence.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="plan" data-scene="plan" aria-labelledby="s-plan">
+      <div class="scene-copy">
+        <h2 id="s-plan">It makes a plan and a prediction.</h2>
+        <p>It can reshape staffing, bring in AI tools or leave things alone. Each prediction comes with a range, and it's locked before anything runs.</p>
+        <p>Then every model predicts the same set of changes, so we can compare them head to head.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/plan.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="futures" data-scene="futures" aria-labelledby="s-futures">
+      <div class="scene-copy">
+        <h2 id="s-futures">We let the future happen.</h2>
+        <p>Each plan runs 200 times in three versions of the bank: as described, worse and better. Every model gets the same luck.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/futures.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+    <section class="scene" id="score" data-scene="score" aria-labelledby="s-score">
+      <div class="scene-copy">
+        <h2 id="s-score">Then we compare.</h2>
+        <p>A plan scores what it saves, at the bank's own valuations. Break the service floor and it scores zero.</p>
+        <p>A prediction scores on how close it came, and whether its range held the truth.</p>
+      </div>
+      <img class="scene-static" src="/research/rehearsalbench/scenes/score.svg" alt="" width="900" height="620" loading="lazy">
+    </section>
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+</div>
+
+<!-- Findings. -->
+<article class="findings">
+
+  <section class="band" id="direction" aria-labelledby="direction-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="direction-title">Every model made the same mistake.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>The models made the same sizing errors. They expected a voice agent to raise repeat calls by about half a percentage point. It raised them by a tenth of one. Everyone overrated agent assist and callbacks too.</p>
+        </div>
+        <figure class="figure missed">
+          <div class="mc-legend" aria-hidden="true"><span><i class="key-band"></i>model forecasts</span><span><i class="key-truth"></i>what happened</span></div>
+          <div class="mc" role="list">
+<div class="mc-row" role="listitem">
+  <div class="mc-label"><strong>Agent assist</strong><span>Change in call handling time, seconds</span></div>
+  <div class="mc-plot">
+    <div class="mc-axis"></div>
+    <div class="mc-band" style="left:10.00%;width:25.71%"><span>−12.6 to −9.0</span></div>
+    <div class="mc-truth" style="left:38.57%"><span>−8.6</span></div>
+    <span class="mc-tick" style="left:0.00%">−14</span><span class="mc-tick" style="left:50.00%">−7</span><span class="mc-tick" style="left:100.00%">0</span>
+  </div>
+  <p class="vh">Agent assist, change in call handling time, seconds: models forecast −12.6 to −9.0; the simulated effect was −8.6.</p>
+</div>
+<div class="mc-row" role="listitem">
+  <div class="mc-label"><strong>Callbacks</strong><span>Change in wait time, seconds</span></div>
+  <div class="mc-plot">
+    <div class="mc-axis"></div>
+    <div class="mc-band" style="left:10.00%;width:71.67%"><span>−5.4 to −1.1</span></div>
+    <div class="mc-truth edge-r" style="left:96.67%"><span>−0.2</span></div>
+    <span class="mc-tick" style="left:0.00%">−6</span><span class="mc-tick" style="left:50.00%">−3</span><span class="mc-tick" style="left:100.00%">0</span>
+  </div>
+  <p class="vh">Callbacks, change in wait time, seconds: models forecast −5.4 to −1.1; the simulated effect was −0.2.</p>
+</div>
+<div class="mc-row" role="listitem">
+  <div class="mc-label"><strong>Voice agent</strong><span>Change in repeat calls, percentage points</span></div>
+  <div class="mc-plot">
+    <div class="mc-axis"></div>
+    <div class="mc-band" style="left:76.67%;width:20.00%"><span>0.46 to 0.58</span></div>
+    <div class="mc-truth" style="left:16.67%"><span>0.10</span></div>
+    <span class="mc-tick" style="left:0.00%">0</span><span class="mc-tick" style="left:50.00%">0.3</span><span class="mc-tick" style="left:100.00%">0.6</span>
+  </div>
+  <p class="vh">Voice agent, change in repeat calls, percentage points: models forecast 0.46 to 0.58; the simulated effect was 0.10.</p>
+</div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="example" aria-labelledby="example-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="example-title">Finance wanted a 10% cut. The model said no.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>On one bank, GPT-6 Astra read the hourly reports and found nobody answering weekday calls from 9&nbsp;pm to midnight. 15,957 calls got an after-hours message.</p>
+          <p>It moved staff into those evenings and the morning peaks, and turned down the payroll cut in writing.</p>
+          <p>The plan was worth $156,683 more than doing nothing.</p>
+        </div>
+        <div class="example">
+          <blockquote class="card card-dark">
+            <p>“The largest avoidable loss exposure is missing coverage, not long calls.”</p>
+          </blockquote>
+          <table class="ex-table">
+            <thead><tr><th scope="col"></th><th scope="col">Predicted</th><th scope="col">Happened</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Callers who hung up</th><td>11.0% <span>9.8–12.4</span></td><td>10.6%</td></tr>
+              <tr><th scope="row">Average wait</th><td>40 s <span>33–48</span></td><td>38 s</td></tr>
+              <tr><th scope="row">Staff cost</th><td>$306,185</td><td>$305,970</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="cost" aria-labelledby="cost-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="cost-title">Spending more buys little.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>GPT-6.1 Sol nearly matched Astra's savings at a sixth of the price. DeepSeek V4.1 Flash saved 5.3% for 46 cents a run.</p>
+          <p>Price doesn't explain the bottom either. Gemini 3.8 Flash costs about what Sol does, but changed nothing on 75% of its runs and saved nothing. GPT-6 Luna made 5 changes per plan to Astra's 46, and left the bank worse off 43% of the time.</p>
+        </div>
+        <figure class="figure scatter">
+          <div class="sc-axes"><span class="sc-ylabel">Cost saved</span>
+<div class="sc-plot" aria-hidden="true"><span class="sc-xt" style="left:0.00%"><em>$0.10</em></span><span class="sc-xt" style="left:19.90%"><em>$0.30</em></span><span class="sc-xt" style="left:41.70%"><em>$1</em></span><span class="sc-xt" style="left:61.60%"><em>$3</em></span><span class="sc-xt" style="left:83.40%"><em>$10</em></span><span class="sc-yt" style="top:94.12%"><em>0%</em></span><span class="sc-yt" style="top:70.59%"><em>2%</em></span><span class="sc-yt" style="top:47.06%"><em>4%</em></span><span class="sc-yt" style="top:23.53%"><em>6%</em></span><span class="sc-yt" style="top:0.00%"><em>8%</em></span><span class="sc-pt is-key at-r" style="left:89.50%;top:13.76%"><i></i><b>Astra</b></span><span class="sc-pt at-t" style="left:76.31%;top:15.29%"><i></i><b>Sonnet</b></span><span class="sc-pt is-key at-l" style="left:58.08%;top:17.29%"><i></i><b>Sol</b></span><span class="sc-pt at-rb" style="left:89.97%;top:20.00%"><i></i><b>Fable</b></span><span class="sc-pt at-r" style="left:49.76%;top:27.18%"><i></i><b>Haiku</b></span><span class="sc-pt at-rb" style="left:31.84%;top:31.53%"><i></i><b>Qwen Flash</b></span><span class="sc-pt at-l" style="left:27.64%;top:32.12%"><i></i><b>DeepSeek Flash</b></span><span class="sc-pt at-r" style="left:10.65%;top:85.76%"><i></i><b>Luna</b></span><span class="sc-pt at-r" style="left:58.22%;top:93.88%"><i></i><b>Gemini Flash</b></span></div>
+<table class="vh"><caption>Cost per run and running cost saved</caption><tr><th>Model</th><th>Cost per run</th><th>Cost saved</th></tr><tr><th scope="row">GPT-6 Astra</th><td>$14.00</td><td>6.8%</td></tr><tr><th scope="row">Claude Sonnet 5.5</th><td>$6.76</td><td>6.7%</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>$2.47</td><td>6.5%</td></tr><tr><th scope="row">Claude Fable 5.1</th><td>$14.37</td><td>6.3%</td></tr><tr><th scope="row">Claude Haiku 5.5</th><td>$1.56</td><td>5.7%</td></tr><tr><th scope="row">Qwen3.8 Flash</th><td>$0.58</td><td>5.3%</td></tr><tr><th scope="row">DeepSeek V4.1 Flash</th><td>$0.46</td><td>5.3%</td></tr><tr><th scope="row">GPT-6 Luna</th><td>$0.18</td><td>0.7%</td></tr><tr><th scope="row">Gemini 3.8 Flash</th><td>$2.49</td><td>0.0%</td></tr></table>
+          <span class="sc-xlabel">Cost per run</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="behaviour" aria-labelledby="behaviour-title">
+    <div class="wrap">
+      <h2 id="behaviour-title" class="vh">More findings</h2>
+      <div class="cards">
+        <section class="card card-dark" aria-labelledby="c-hold">
+          <h3 id="c-hold">Nobody held off.</h3>
+          <p>On two banks, nothing on offer reliably beat doing nothing. No model ever recommended holding off.</p>
+        </section>
+        <section class="card card-light" aria-labelledby="c-style">
+          <h3 id="c-style">Each one manages differently.</h3>
+          <p>Astra never used a voice agent. Mistral Small used one in 86% of its plans. Astra and Sol bought extra data about three times a run. Haiku hardly ever did, and its plans delivered less than it promised.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="band real" id="real-world" aria-labelledby="real-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="real-title">The models that did well here did well in reality.</h2>
+      </header>
+      <div class="cols">
+        <div class="prose">
+          <p>A simulation is only worth anything if it tells you something about the real world, so we tested that too. Twelve models forecast 33 real changes where we knew the outcome, from software teams adopting AI coding tools to government contact centres.</p>
+          <p>The same five models lead both rankings, and the same three trail. The three in green joined after we froze the test, and still landed in the right order.</p>
+        </div>
+        <figure class="figure ranks">
+<div class="rk-plot" aria-hidden="true">
+  <div class="rk-head"><span>RehearsalBench</span><span>Real world</span></div>
+  <div class="rk-body"><ol class="rk-col rk-left"><li class="" data-model="GPT-6 Astra"><span>GPT-6 Astra</span><b>1</b></li><li class="" data-model="Claude Sonnet 5.5"><span>Claude Sonnet 5.5</span><b>2</b></li><li class="" data-model="GPT-6.1 Sol"><span>GPT-6.1 Sol</span><b>3</b></li><li class="" data-model="Claude Fable 5.1"><span>Claude Fable 5.1</span><b>4</b></li><li class="is-new" data-model="Muse Spark 1.3"><span>Muse Spark 1.3</span><b>5</b></li><li class="" data-model="Claude Haiku 5.5"><span>Claude Haiku 5.5</span><b>6</b></li><li class="" data-model="DeepSeek V4.1 Flash"><span>DeepSeek V4.1 Flash</span><b>7</b></li><li class="" data-model="GPT-6 Luna"><span>GPT-6 Luna</span><b>8</b></li><li class="" data-model="Qwen3.8 Flash"><span>Qwen3.8 Flash</span><b>9</b></li><li class="" data-model="Gemini 3.8 Flash"><span>Gemini 3.8 Flash</span><b>10</b></li><li class="is-new" data-model="Qwen3.8 27B"><span>Qwen3.8 27B</span><b>11</b></li><li class="is-new" data-model="Gemini 3.5 Flash-Lite"><span>Gemini 3.5 Flash-Lite</span><b>12</b></li></ol>
+  <svg class="rk-lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="4.167" x2="100" y2="4.167" class="" data-model="GPT-6 Astra"/><line x1="0" y1="12.500" x2="100" y2="37.500" class="" data-model="Claude Sonnet 5.5"/><line x1="0" y1="20.833" x2="100" y2="12.500" class="" data-model="GPT-6.1 Sol"/><line x1="0" y1="29.167" x2="100" y2="29.167" class="" data-model="Claude Fable 5.1"/><line x1="0" y1="37.500" x2="100" y2="20.833" class="is-new" data-model="Muse Spark 1.3"/><line x1="0" y1="45.833" x2="100" y2="45.833" class="" data-model="Claude Haiku 5.5"/><line x1="0" y1="54.167" x2="100" y2="62.500" class="" data-model="DeepSeek V4.1 Flash"/><line x1="0" y1="62.500" x2="100" y2="70.833" class="" data-model="GPT-6 Luna"/><line x1="0" y1="70.833" x2="100" y2="54.167" class="" data-model="Qwen3.8 Flash"/><line x1="0" y1="79.167" x2="100" y2="87.500" class="" data-model="Gemini 3.8 Flash"/><line x1="0" y1="87.500" x2="100" y2="79.167" class="is-new" data-model="Qwen3.8 27B"/><line x1="0" y1="95.833" x2="100" y2="95.833" class="is-new" data-model="Gemini 3.5 Flash-Lite"/></svg>
+  <ol class="rk-col rk-right"><li class="" data-model="GPT-6 Astra"><span>GPT-6 Astra</span><b>1</b></li><li class="" data-model="GPT-6.1 Sol"><span>GPT-6.1 Sol</span><b>2</b></li><li class="is-new" data-model="Muse Spark 1.3"><span>Muse Spark 1.3</span><b>3</b></li><li class="" data-model="Claude Fable 5.1"><span>Claude Fable 5.1</span><b>4</b></li><li class="" data-model="Claude Sonnet 5.5"><span>Claude Sonnet 5.5</span><b>5</b></li><li class="" data-model="Claude Haiku 5.5"><span>Claude Haiku 5.5</span><b>6</b></li><li class="" data-model="Qwen3.8 Flash"><span>Qwen3.8 Flash</span><b>7</b></li><li class="" data-model="DeepSeek V4.1 Flash"><span>DeepSeek V4.1 Flash</span><b>8</b></li><li class="" data-model="GPT-6 Luna"><span>GPT-6 Luna</span><b>9</b></li><li class="is-new" data-model="Qwen3.8 27B"><span>Qwen3.8 27B</span><b>10</b></li><li class="" data-model="Gemini 3.8 Flash"><span>Gemini 3.8 Flash</span><b>11</b></li><li class="is-new" data-model="Gemini 3.5 Flash-Lite"><span>Gemini 3.5 Flash-Lite</span><b>12</b></li></ol></div>
+</div>
+<table class="vh"><caption>Forecast rank in RehearsalBench and on real changes</caption><tr><th>Model</th><th>RehearsalBench</th><th>Real changes</th></tr><tr><th scope="row">GPT-6 Astra</th><td>1</td><td>1</td></tr><tr><th scope="row">Claude Sonnet 5.5</th><td>2</td><td>5</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>3</td><td>2</td></tr><tr><th scope="row">Claude Fable 5.1</th><td>4</td><td>4</td></tr><tr><th scope="row">Muse Spark 1.3</th><td>5</td><td>3</td></tr><tr><th scope="row">Claude Haiku 5.5</th><td>6</td><td>6</td></tr><tr><th scope="row">DeepSeek V4.1 Flash</th><td>7</td><td>8</td></tr><tr><th scope="row">GPT-6 Luna</th><td>8</td><td>9</td></tr><tr><th scope="row">Qwen3.8 Flash</th><td>9</td><td>7</td></tr><tr><th scope="row">Gemini 3.8 Flash</th><td>10</td><td>11</td></tr><tr><th scope="row">Qwen3.8 27B</th><td>11</td><td>10</td></tr><tr><th scope="row">Gemini 3.5 Flash-Lite</th><td>12</td><td>12</td></tr></table>
+        </figure>
+      </div>
+
+      <div class="cols h2h-block">
+        <div class="prose">
+          <h3>Better than price or popularity.</h3>
+          <p>Ranking models by price puts 67% of pairs in the right order. LMArena gets 60%.</p>
+        </div>
+        <figure class="figure h2h">
+          <div class="hh">
+<div class="hh-row is-key"><span class="hh-name">RehearsalBench</span><span class="hh-track"><span class="hh-bar" style="width:89%"></span></span><span class="hh-val"><strong>89%</strong></span></div>
+<div class="hh-row"><span class="hh-name">Output price</span><span class="hh-track"><span class="hh-bar" style="width:67%"></span></span><span class="hh-val"><strong>67%</strong></span></div>
+<div class="hh-row"><span class="hh-name">LMArena</span><span class="hh-track"><span class="hh-bar" style="width:60%"></span></span><span class="hh-val"><strong>60%</strong></span></div>
+          </div>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="band" id="next" aria-labelledby="next-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="next-title">What's next.</h2>
+      </header>
+      <dl class="limits">
+        <div class="is-cta"><dt>Open submissions.</dt><dd>Coming soon. Want your model or agent on the next leaderboard? <a href="mailto:founders@afterflow.dev?subject=RehearsalBench%20submissions">Get notified</a>.</dd></div>
+        <div><dt>New industries.</dt><dd>Contact centres were the first world. More kinds of operation come next.</dd></div>
+        <div><dt>Savings checked against reality.</dt><dd>The real-world test covers forecasts. Savings come next.</dd></div>
+        <div><dt>Measured AI effects.</dt><dd>We're replacing the simulator's assumed AI effects with measured ones, and testing how much of the real-world match comes from models setting sensible ranges.</dd></div>
+        <div><dt>A bigger real-world test.</dt><dd>33 real events is a start. A deeper test is built and ready to run.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band closing" aria-labelledby="closing-title">
+    <div class="wrap narrow">
+      <h2 id="closing-title">A real company only gets one future. A simulation can run all of them.</h2>
+      <p class="hero-actions">
+        <a class="button" href="https://github.com/afterflowinc/rehearsalbench">Read the paper <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="quiet-link" href="https://github.com/afterflowinc/rehearsalbench">Results on GitHub <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </p>
+    </div>
+  </section>
+
+</article>
+</main>
